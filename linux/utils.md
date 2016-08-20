@@ -82,7 +82,6 @@ sudo apt-get install p7zip-full p7zip p7zip-rar
 ```
 #### <blockquote> monitors
 ```bash
-~ screns 
 ## change ration
 # 1. смотрим название мониторов
 xrandr
@@ -92,4 +91,17 @@ cvt 1360 768  "1360x768_60.00" 84.75  1360 1432 1568 1776  768 771 781 798 -hsyn
 xrandr --newmode "1360x768_60.00" 84.75  1360 1432 1568 1776  768 771 781 798 -hsync +vsync
 xrandr --addmode VGA1 "1360x768_60.00"
 xrandr --output VGA1 --mode "1360x768_60.00"
+```
+<sub>add two monitos
+```bash
+# After  the output, let's suppose that you have a laptop which panel is LVDS and an external VGA  port which we will regard as VGA, we execute:
+$ xrandr --output VGA1 --mode 1280x1024 --right-of LVDS1
+$ xrandr --newmode $(gtf 1280 800 68 | grep Modeline | sed s/Modeline\ // | tr -d '"')
+$ xrandr --addmode VGA 1280x800_68.00
+# use
+xrandr --output VGA1 --mode 1440x900 --right-of LVDS1
+# off
+$ xrandr --output VGA --off
+# mirror
+xrandr --output LVDS1  --output VGA1 --mode 1440x900 --same-as LVDS1
 ```
