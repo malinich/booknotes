@@ -24,6 +24,11 @@ pip install httpie
 http GET http://127.0.0.1:8552/api/users X-Requested-With:XMLHttpRequest Authorization:'xToken ola-la' --pretty=all --verbose
 ```
 
+####  <blockquote>brutforce 
+```bash
+for i in `seq 1 1000`; do mysql -u root --password=bad -h 127.0.0.1 2>/dev/null;echo  $i; done
+```
+
 #### <blockquote>skype
 ```bash
 # launch skype
@@ -36,4 +41,37 @@ Exec=LD_PRELOAD=/usr/lib/i386-linux-gnu/mesa/libGL.so.1 skype
 TargetEnvironment=Unity
 ```
 
+#### <blockquote> clean memory
+```bash
+sync
+root@maka-NB:/home/malinich# echo 3 > /proc/sys/vm/drop_caches 
+```
+
+#### <blockquote> Locale
+```bash
+locale -a
+sudo gedit /var/lib/locales/supported.d/local
+ru_RU.CP1251 CP1251
+ru_RU.KOI8-R KOI8-R
+# sudo locale-gen ru_RU.UTF-8
+# sudo locale-gen en_US.UTF-8
+locale-gen
+Generating locales...
+  en_US.UTF-8... done
+  ru_RU.CP1251... done
+  ru_RU.KOI8-R... done
+  ru_RU.UTF-8... up-to-date
+  ru_UA.UTF-8... up-to-date
+Generation complete.
+locale -a
+
+# on sever (ssh?)
+ AcceptEnv LANG LC_*
+
+# troubles with local into rar and zip-archives for Ubuntu:
+
+sudo add-apt-repository ppa:frol/zip-i18n
+sudo apt-get update
+sudo apt-get install p7zip-full p7zip p7zip-rar
+```
 
