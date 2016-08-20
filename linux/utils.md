@@ -105,9 +105,18 @@ $ xrandr --output VGA --off
 # mirror
 xrandr --output LVDS1  --output VGA1 --mode 1440x900 --same-as LVDS1
 ```
+<blockquote><sub>brightness</sub></blockquote>
+```bash
+sudo su -c "echo 4500 > /sys/class/backlight/intel_backlight/brightness"
+```
 #### <blockquuote> version of Ubuntu
 ```
 lsb_release -a
+```
+#### <blockquote>show capacity of folders
+```
+find -size +10M -exec du -sh {} \;
+du -h --threshold=1 || du -h --threshold=1G | sort -hnG
 ```
 
 #### <blockquote>Xorg
@@ -147,4 +156,38 @@ find $directory -type f -name "*.in"
 touch --date "2007-01-01" /tmp/start
 touch --date "2008-01-01" /tmp/end
 find /data/images -type f -newer /tmp/start -not -newer /tmp/end
+```
+#### <blockquote> pppoe
+```bash
+# настройка pppoe:
+# Для автоматического создания PPPoE подключения при загрузке компьютера можно прописать следующие строки в /etc/network/interfaces:
+auto ppp0 
+iface ppp0 inet ppp
+  pre-up /sbin/ifconfig eth0 up
+  provider pppoe
+# on/off
+sudo poff pppoe 
+sudo pon pppoe
+```
+#### <blockquote> sound
+```bash
+amixer -D pulse sset Master 100% on
+amixer -D pulse sset Master 100% off
+amixer -c0 sset Capture cap # nocap
+# show used sound card
+fuser -v /dev/snd/*
+## sset volume more than 100%
+pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo 200%
+```
+#### <blockquote>use command in background
+```
+nohup command-name &
+```
+
+#### <blockquote>create swap
+```
+dd if=/dev/zero of=/swapfile bs=1M count=1024
+mkswap /swapfile
+swapon /swapfile
+/swapfile swap swap defaults 0 0 to /etc/fstab
 ```
