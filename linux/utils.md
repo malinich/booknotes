@@ -64,14 +64,32 @@ Generating locales...
   ru_UA.UTF-8... up-to-date
 Generation complete.
 locale -a
+# set locale
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LC_CTYPE="en_US.UTF-8"
+locale-gen en_US.UTF-8
+sudo dpkg-reconfigure locales
 
 # on sever (ssh?)
  AcceptEnv LANG LC_*
 
 # troubles with local into rar and zip-archives for Ubuntu:
-
 sudo add-apt-repository ppa:frol/zip-i18n
 sudo apt-get update
 sudo apt-get install p7zip-full p7zip p7zip-rar
 ```
-
+#### <blockquote> monitors
+```bash
+~ screns 
+## change ration
+# 1. смотрим название мониторов
+xrandr
+# 2. copy
+cvt 1360 768  "1360x768_60.00" 84.75  1360 1432 1568 1776  768 771 781 798 -hsync +vsync
+# 3. insert this 
+xrandr --newmode "1360x768_60.00" 84.75  1360 1432 1568 1776  768 771 781 798 -hsync +vsync
+xrandr --addmode VGA1 "1360x768_60.00"
+xrandr --output VGA1 --mode "1360x768_60.00"
+```
