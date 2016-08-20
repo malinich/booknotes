@@ -1,4 +1,4 @@
-## mount
+## <pre class="highlight">mount</pre>
 ```bash
 # mount from user
 sudo mount -t vfat -o umask=0022,gid=1000,uid=1000 /dev/sdb4 /mnt/  
