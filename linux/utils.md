@@ -16,3 +16,24 @@ ps -u `id -u -n` -o pid,uname,comm -C python |grep -E -o '[0-9]+ .* python'|grep
 ```bash
 avconv -f video4linux2 -s 640x480 -i /dev/video0 -ss 0:0:2 -frames 1 /tmp/out.jpg 
 ```
+
+#### curl
+```bash
+# instead curl use httpie
+pip install httpie
+http GET http://127.0.0.1:8552/api/users X-Requested-With:XMLHttpRequest Authorization:'xToken ola-la' --pretty=all --verbose
+```
+
+#### skype
+```bash
+# launch skype
+LD_PRELOAD=/usr/lib/i386-linux-gnu/mesa/libGL.so.1 skype &
+# You can put the last statement into a shell script, e.g. ~/bin/skype , or create a .desktop-File with this content:
+
+Name=Skype
+Terminal=false
+Exec=LD_PRELOAD=/usr/lib/i386-linux-gnu/mesa/libGL.so.1 skype
+TargetEnvironment=Unity
+```
+
+
