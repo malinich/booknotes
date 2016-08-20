@@ -109,7 +109,7 @@ xrandr --output LVDS1  --output VGA1 --mode 1440x900 --same-as LVDS1
 ```bash
 sudo su -c "echo 4500 > /sys/class/backlight/intel_backlight/brightness"
 ```
-#### <blockquuote> version of Ubuntu
+#### <blockquote> version of Ubuntu
 ```
 lsb_release -a
 ```
@@ -180,12 +180,12 @@ fuser -v /dev/snd/*
 pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo 200%
 ```
 #### <blockquote>use command in background
-```
+```bash
 nohup command-name &
 ```
 
 #### <blockquote>create swap
-```
+```bash
 dd if=/dev/zero of=/swapfile bs=1M count=1024
 mkswap /swapfile
 swapon /swapfile
