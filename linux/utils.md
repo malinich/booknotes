@@ -92,7 +92,7 @@ xrandr --newmode "1360x768_60.00" 84.75  1360 1432 1568 1776  768 771 781 798 -h
 xrandr --addmode VGA1 "1360x768_60.00"
 xrandr --output VGA1 --mode "1360x768_60.00"
 ```
-<sub>add two monitos
+<blockquote><sub>add two monitos
 ```bash
 # After  the output, let's suppose that you have a laptop which panel is LVDS and an external VGA  port which we will regard as VGA, we execute:
 $ xrandr --output VGA1 --mode 1280x1024 --right-of LVDS1
@@ -104,4 +104,34 @@ xrandr --output VGA1 --mode 1440x900 --right-of LVDS1
 $ xrandr --output VGA --off
 # mirror
 xrandr --output LVDS1  --output VGA1 --mode 1440x900 --same-as LVDS1
+```
+#### <blockquuote> version of Ubuntu
+```
+lsb_release -a
+```
+
+#### <blockquote>Xorg
+```bash
+# отключение загрузки иксов происходит строкой  в консоли:
+sudo update-rc.d -f gdm remove (для гнома)
+sudo update-rc.d -f kdm remove (для kde)
+
+# после отключения, для запуска иксов в консоли набирать
+startx
+
+# восстановить автозагрузку иксов при старте системы:
+sudo update-rc.d -f gdm defaults (для гнома)
+sudo update-rc.d -f kdm defaults (для kde)
+
+# Отключить запуск unity и вообще графической оболочки в ubuntu 12.04 можно подправив файл /etc/default/grub
+
+# Нужно изменить строку
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+# на
+GRUB_CMDLINE_LINUX_DEFAULT="text"
+# выполнить
+sudo update-grub
+
+# смена оконного менеджера
+sudo update-alternatives --config x-display-manager
 ```
