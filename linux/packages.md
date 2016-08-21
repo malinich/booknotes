@@ -24,18 +24,21 @@ sudo alien package _file.rpm
 
 # установка alien
 sudo apt-get install alien  
-
+```
 #### <blockquote>dpkg
+```bash
 # dpkg [ключи] действие
 sudo dpkg -i /путь/файл.deb # установить
 sudo dpkg -r # пакет удолить
 dpkg -l # вывести список установленных пакетов
 dpkg -L # вывести имена фаалов из указанных пакетов
 dpkg -p # вывести информацию об установленном пакете
-
+```
 
 #### <blockquote>update google-chrome
+```bash
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 sudo apt-get update
 sudo apt-get --only-upgrade install google-chrome-stable
+```
