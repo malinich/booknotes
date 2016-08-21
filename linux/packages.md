@@ -1,4 +1,4 @@
-#### <blockquote>Adding PPA
+#### <blockquote>Adding PPA</blockquote>
 ```bash
 apt-key list
 sudo apt-key del 30C18A2B
@@ -25,7 +25,7 @@ sudo alien package _file.rpm
 # установка alien
 sudo apt-get install alien  
 
-#### <blockquote> dpkg
+#### <blockquote>dpkg
 # dpkg [ключи] действие
 sudo dpkg -i /путь/файл.deb # установить
 sudo dpkg -r # пакет удолить
