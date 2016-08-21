@@ -327,7 +327,7 @@ docker -d -s devicemapper --storage-opt dm.datadev=/dev/sdb1 \-storage-opt dm.me
 # container-facing docker0 interface. As a result, this will be the default 
 # IP address used when binding container ports. For example this option can 
 # be shown as follows:
-docker -d --ip 172.16.42.1
+docker -d --ip xxx.xxx.xxx.xxx
 
 # --ip-forward: This is a Boolean option. If it is set to false, the host 
 # running the daemon will not forward the packets between containers or 
