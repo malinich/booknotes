@@ -33,6 +33,9 @@ ip link list
 # маршрутизация всех таблиц в ядре
 ip rule list 
 
+# show all forwarded ports
+sudo iptables -t nat -vnL
+
 # правило очень удобно разрешает все уже установленные соединения и  все дальнейшие соединения, которые они создадут.
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 
