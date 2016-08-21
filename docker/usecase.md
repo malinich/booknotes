@@ -35,6 +35,8 @@ docker load -i codeit.tar
 sudo Docker export red_panda > latest.tar  # for container
 
 docker run -it -p 5672:5672 -p 15672:15672 --sig-proxy=false tutum/rabbitmq 
+# get  container ip
+docker inspect --format '{{ .NetworkSettings.IPAddress }}' e05bb # id of container
 ```
 nginx
 ```bash
@@ -83,7 +85,5 @@ docker run -it --link redis-report:redis --rm redis sh -c 'exec redis-cli -h "$R
 docker run --name some-redis -d redis
 docker run -it --link some-redis:redis --rm redis sh -c 'exec redis-cli -h "$REDIS_PORT_6379_TCP_ADDR" -p "$REDIS_PORT_6379_TCP_PORT"'
 
-# get  container ip
-docker inspect --format '{{ .NetworkSettings.IPAddress }}' e05bb # id of container
 
 ```
