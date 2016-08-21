@@ -113,7 +113,7 @@ passwd admin
 # For sudo permissions for your new admin user, use the following command. 
 echo 'admin ALL=(ALL) ALL' >> /etc/sudoers
 ssh admin@my.ip.or.hostname
-... admin@my.ip.or.hostname's password:
+... admin@my.ip.or.hostname\'s password:
 # Verify that you can su (switch user) to root with the admin user.  
 su -
 whoami
