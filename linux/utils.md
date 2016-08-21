@@ -196,6 +196,11 @@ swapon /swapfile
 # allow user to reboot computer
 visudo user hostname =NOPASSWD: /usr/bin/systemctl poweroff,/usr/bin/systemctl halt,/usr/bin/systemctl reboot  
 # /etc/sudoers 
+
+sudo visudo -f /etc/sudoers.d/myOverrides 
+User ALL = NOPASSWD:/sbin/mount -t ntfs /dev/sda2 /home/User/mnt/ntfs
+sudo mount /dev/sda5 /media
+
 ```
 
 ####<blockquote>ip
@@ -210,4 +215,35 @@ irb
 awk 'NR==3 {printf "%.1f%%\\n",($3/70)*100}' /proc/net/wireless
 # nr - это номер строки
 # $3 - это третье слово 0-вся строка 
+```
+
+####<blockquote>sed
+```bash
+rename 's/\.bak$//' *.bak # переименовать массово
+find /home/maka/Dropbox/phone/ -type f -print0 -name "*.vnt" |xargs -0 sed -i.bak 's/=0D=0A/\n/'  # replace 1 раз
+find /home/maka/Dropbox/phone/ -name "2014-06-18.19.34.38.vnt" -print0 |xargs -0 sed -i.bak 's/=0D=0A/\n/g' # много раз
+```
+####<blockquote>Xinput
+```bash
+xinput list-props 12
+xinput --help
+xinput set-prop 12 273 1
+
+udevadm info -a -p /devices/pci0000:00/0000:00:1d.0/usb4/4-1/4-1.2
+
+sudo vim /etc/udev/rules.d/90-mouse.rules
+# ATTRS{serial}=="AC993E820D0029", SYMLINK+="helloUsbMouse"
+# ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c048", SYMLINK+="helloUsbMouse"
+
+service udev restart
+udevadm monitor
+# plug/unplug
+
+xinput list
+# find "Touchpad" and remembe id: forexample is 15
+xinput set-prop 15 "Device Enabled" 0
+```
+#### <blockquote>battary
+```bash
+upower -i $(upower -e | grep 'BAT') | grep -E "state|to\ full|percentage"
 ```
