@@ -1,10 +1,13 @@
-# first need install gpg2, gnugpg2
-# install keyserver FREE PGP KEY SERVER
+first need install gpg2, gnugpg2  
+install keyserver FREE PGP KEY SERVER  
+
+```bash
 sudo apt-get install sks
 sudo sks build
 sudo chown -Rc debian-sks:debian-sks /var/lib/sks/DB
 set initstart=yes in /etc/default/sks
 sudo /etc/init.d/sks start
+
 # see http://your.server.name:11371
 
 # GENERATE A KEYPAIR
@@ -14,9 +17,9 @@ gpg2 --gen-key
 gpg --export -a "User Name" > public.key
 
 # open your site and enter this key
+```
 
-
-# Once the key hash is known, the key can then be retrieved using the command:
+Once the key hash is known, the key can then be retrieved using the command:  
 ```bash
 # gpg --keyserver [name of keyserver] --recv-keys [keyhash]
 # crypt message
