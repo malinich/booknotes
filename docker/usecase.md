@@ -26,8 +26,7 @@ docker run -dit -v /media/maka/7E24BAFF24BABA0B/music:/media ubuntu /bin/bash
 docker diff 068
 docker commit -m "first commit code.it add" <container_name>  code.it:v1
 sudo docker export red_panda > latest.tar
-```
-###
+
 docker build . -t <init>
 
 docker save -o codeit.tar code.it  # for images
@@ -36,7 +35,7 @@ docker load -i codeit.tar
 sudo Docker export red_panda > latest.tar  # for container
 
 docker run -it -p 5672:5672 -p 15672:15672 --sig-proxy=false tutum/rabbitmq 
-
+```
 nginx
 ```bash
 docker run --name some-nginx -v /home/maka/workspaces/rts_notify/nginx.conf:/etc/nginx/nginx.conf:ro --net="host" -p 80:80 -d nginx 
