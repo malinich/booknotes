@@ -1,11 +1,11 @@
 
-screen -S some-name  # обозвать сессию
-screen -S some-name -X quit  # убить сессию
+screen -S some-name  # обозвать сессию  
+screen -S some-name -X quit  # убить сессию  
 
-Ctrl+A затем d
-after some time
-screen -ls
-screen -r 20673.pts-0.srv
+Ctrl+A затем d  
+after some time  
+screen -ls  
+screen -r 20673.pts-0.srv  
 
 Ctrl+A затем «c» — создать окно screen  
 Ctrl+A затем «p» — переключиться к предыдущему окну screen  
