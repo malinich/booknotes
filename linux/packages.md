@@ -12,7 +12,7 @@ sudo apt-get update
 edit /etc/apt/source.list  
 # keyserver maybe is keyserver.ubuntu.com
 gpg --keyserver subkeys.pgp.net --recv-keys CE49EC21 
-Then, add the key to Ubuntu's apt trusted keys database with the following command:
+Then, add the key to Ubuntu\'s apt trusted keys database with the following command:
 gpg --export --armor CE49EC21 | sudo apt-key add - 
 
 # search lib
