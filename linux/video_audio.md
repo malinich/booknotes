@@ -25,3 +25,8 @@ rtmp://127.0.0.1/live/test
 ffmpeg -f video4linux2 -i /dev/video0  -vcodec mpeg2video -f alsa -i pulse -acodec libmp3lme   -f flv rtmp://localhost/tra/tru
 ffmpeg -f video4linux2 -i /dev/video0  -vcodec mpeg2video -f alsa -i pulse -acodec libmp3lame  -ar 22050  -f flv rtmp://localhost/tra/tru
 ```
+audio  
+```
+amixer -D pulse sset Master 100% on
+amixer -c0 sset Capture cap # nocap
+```
