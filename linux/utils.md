@@ -197,3 +197,17 @@ swapon /swapfile
 visudo user hostname =NOPASSWD: /usr/bin/systemctl poweroff,/usr/bin/systemctl halt,/usr/bin/systemctl reboot  
 # /etc/sudoers 
 ```
+
+####<blockquote>ip
+```bash
+ip addr show 
+cat tcp
+irb
+```
+
+#### <blockquote>awk
+```bash
+awk 'NR==3 {printf "%.1f%%\\n",($3/70)*100}' /proc/net/wireless
+# nr - это номер строки
+# $3 - это третье слово 0-вся строка 
+```
