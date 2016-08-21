@@ -1,10 +1,10 @@
 #### <blockquote>commands
-mod + shift + tag-number: move window to specified tag number.
-mod + ctrl + shift + tag-number: duplicate window to specified tag number.
-mod + shift + ,: move window to left/previous tag number.
-mod + shift + .: move window to right/next tag number.
+mod + shift + tag-number: move window to specified tag number.  
+mod + ctrl + shift + tag-number: duplicate window to specified tag number.  
+mod + shift + ,: move window to left/previous tag number.  
+mod + shift + .: move window to right/next tag number.  
 
-Install xcompmgr:
+Install xcompmgr:  
 ```bash
 sudo aptitude install xcompmgr
 # the best is:
