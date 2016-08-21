@@ -191,3 +191,9 @@ mkswap /swapfile
 swapon /swapfile
 /swapfile swap swap defaults 0 0 to /etc/fstab
 ```
+#### <blockquote> sudo
+```bash
+# allow user to reboot computer
+visudo user hostname =NOPASSWD: /usr/bin/systemctl poweroff,/usr/bin/systemctl halt,/usr/bin/systemctl reboot  
+# /etc/sudoers 
+```
