@@ -1,7 +1,4 @@
 ```bash
-# записал звук микрофона
-avconv -f alsa -i pulse -acodec copy -f x11grab -s 1366x768 -r 25 -i :0.0 -vcodec mpeg2video test.mkv
-avconv -f alsa -i hw:0 -acodec libmp3lame -ab 192k -ac 1 -ar 44100 U2012061200.mp3
 
 ffmpeg -f video4linux2 -i /dev/video0 -an -f flv rtmp://localhost/tra/tru
 
@@ -27,6 +24,12 @@ ffmpeg -f video4linux2 -i /dev/video0  -vcodec mpeg2video -f alsa -i pulse -acod
 ```
 audio  
 ```
+# записал звук микрофона
+avconv -f alsa -i pulse -acodec copy -f x11grab -s 1366x768 -r 25 -i :0.0 -vcodec mpeg2video test.mkv
+avconv -f alsa -i hw:0 -acodec libmp3lame -ab 192k -ac 1 -ar 44100 U2012061200.mp3
+# set volume
 amixer -D pulse sset Master 100% on
 amixer -c0 sset Capture cap # nocap
+# set vlume more than 100
+pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo 200% 
 ```
