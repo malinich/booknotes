@@ -247,3 +247,15 @@ xinput set-prop 15 "Device Enabled" 0
 ```bash
 upower -i $(upower -e | grep 'BAT') | grep -E "state|to\ full|percentage"
 ```
+
+#### <blockquote>libs
+```
+apt-file search libXss.so
+```
+
+#### <blockquote>notifi
+```
+echo fs.inotify.max_user_watches=100000 | sudo tee -a /etc/sysctl.conf; sudo sysctl -p
+
+while ping -c 1 127.0.0.1 > /dev/null; do acpi -t -f | while read tem; do notify-send "$tem"; done; sleep 300; done
+```
