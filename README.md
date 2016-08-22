@@ -1,1 +1,1 @@
-# booknotes and reciptes
+# booknotes and recipes
