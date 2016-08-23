@@ -15,6 +15,7 @@
 
 #### websocket
 + [hipochat][11]
+
 #### test
 + [responses][10] A utility for mocking out the Python Requests library.
 
