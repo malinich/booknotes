@@ -3,6 +3,7 @@
 
 #### test
 + [mock-django][2] A simple library for mocking certain Django behavior, such as the ORM.
++ [django factory boy][5]
 
 
 #### extension
@@ -16,3 +17,4 @@
 [2]: https://github.com/dcramer/mock-django
 [3]: http://django-extensions.readthedocs.io/
 [4]: https://github.com/jrief/django-websocket-redis
+[5]: http://factoryboy.readthedocs.io/en/latest/index.html
