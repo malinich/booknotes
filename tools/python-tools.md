@@ -1,6 +1,6 @@
 #### env wrappers
-+ [pyenv-virtualenvwrapper](https://github.com/yyuu/pyenv-virtualenvwrapper)
-+ [pyenv](https://github.com/yyuu/pyenv)
++ [pyenv-virtualenvwrapper][8]
++ [pyenv][9]
 
 #### functional libraries
 + [Fn.py][1]
@@ -21,3 +21,5 @@
 [5]: https://github.com/igrishaev/f
 [6]: https://github.com/dgilland/pydash
 [7]: http://docs.python-requests.org/en/master/
+[8]: https://github.com/yyuu/pyenv-virtualenvwrapper
+[9]: https://github.com/yyuu/pyenv
