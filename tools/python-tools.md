@@ -1,3 +1,7 @@
+#### env wrappers
++ [pyenv-virtualenvwrapper](https://github.com/yyuu/pyenv-virtualenvwrapper)
++ [pyenv](https://github.com/yyuu/pyenv)
+
 #### functional libraries
 + [Fn.py][1]
 + [Pipe][2]
