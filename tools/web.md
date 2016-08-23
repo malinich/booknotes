@@ -16,4 +16,4 @@
 + [from htaccess-apache  to nginx](http://winginx.com/ru/htaccess)
 
 #### layout
-+[templates-layout](https://templates.campaignmonitor.com/build/)
++ [templates-layout](https://templates.campaignmonitor.com/build/)
