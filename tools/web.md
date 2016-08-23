@@ -13,3 +13,7 @@
 
 #### prototype
 + [list of app and services into habrahabr post](https://habrahabr.ru/post/132403/)
+
+
+#### converter
++ [from htaccess-apache  to nginx](http://winginx.com/ru/htaccess)
