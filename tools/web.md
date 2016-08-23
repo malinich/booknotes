@@ -15,6 +15,7 @@
 #### converter/calculator
 + [from htaccess-apache  to nginx](http://winginx.com/ru/htaccess)
 + [permissions-calculator](http://permissions-calculator.org/)
++ [cron](http://crontab.guru/)
 
 #### layout
 + [templates-layout](https://templates.campaignmonitor.com/build/)
