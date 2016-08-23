@@ -10,9 +10,11 @@
 + [f][5]
 + [pydash][6]
 
-
 #### http
 + [Requests][7]
+
+#### test
++ [responses][10] A utility for mocking out the Python Requests library.
 
 [1]: https://github.com/kachayev/fn.py
 [2]: https://github.com/JulienPalard/Pipe
@@ -23,3 +25,4 @@
 [7]: http://docs.python-requests.org/en/master/
 [8]: https://github.com/yyuu/pyenv-virtualenvwrapper
 [9]: https://github.com/yyuu/pyenv
+[10]: https://github.com/getsentry/responses
