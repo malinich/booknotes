@@ -2,6 +2,7 @@
 + [HTTPie][1]: a CLI, cURL-like tool for humans
 
 #### net
++ [caddyserver](https://caddyserver.com/)
 + [mitmproxy][2]: An interactive console program that allows traffic flows to be intercepted, inspected, modified and replayed.  [mitposy site](https://mitmproxy.org/)
 + [mitmdump][3] Think tcpdump for HTTP - the same functionality as mitmproxy without the frills.
 
