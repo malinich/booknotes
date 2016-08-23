@@ -9,7 +9,3 @@
 + [termins of microsoft](https://msdn.microsoft.com/ru-ru/library/windows/desktop/ms721532(v=vs.85).aspx)
 + [example::Hey, Scripting Guy!: We All Scream for Security Descriptors](https://technet.microsoft.com/en-us/magazine/2006.05.scriptingguy.aspx)
 
-#### python
-+ [Overcoming Python's GIL with Cython](https://lbolla.info/blog/2013/12/23/python-threads-cython-gil)
-+ [Run Django under Nginx, Virtualenv and Supervisor](http://dangoldin.com/2013/07/30/run-django-under-nginx-virtualenv-and-supervisor/)
-+ 
