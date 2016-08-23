@@ -3,3 +3,4 @@
 
 #### Projects using AngularJS
 + [Projects-using-AngularJS](https://github.com/angular/angular.js/wiki/Projects-using-AngularJS)
++ [madewithangular](https://www.madewithangular.com/#/)
