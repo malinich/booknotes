@@ -1,5 +1,7 @@
 ## js style
-#### angularjs
++ [JavaScript Code Style](https://github.com/ymaps/codestyle/blob/master/javascript.md)
+
+## angularjs
 + [johnpapa][1]
 
 
