@@ -1,2 +1,3 @@
 #### angular
 + [angular-requirejs-seed](https://github.com/tnajdek/angular-requirejs-seed)
++ [hottowel](https://github.com/johnpapa/generator-hottowel)Create an Angular application using the HotTowel style
