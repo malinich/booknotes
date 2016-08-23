@@ -4,6 +4,7 @@
 
 #### js
 + [speakingjs](http://speakingjs.com/es5/ch13.html)
++ [Enterprise Web Development](http://enterprisewebbook.com/)
 
 
 #### ebooks
