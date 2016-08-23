@@ -1,4 +1,4 @@
-## js style
+## js 
 + [JavaScript Code Style](https://github.com/ymaps/codestyle/blob/master/javascript.md)
 
 ## angularjs
@@ -8,5 +8,7 @@
 ## python
 + [Советы Google по кодированию на языке Python](https://habrahabr.ru/post/179271/)
 
+## css
++ [primercss](http://primercss.io/)The CSS toolkit and guidelines that power GitHub.
 
 [1]: https://github.com/johnpapa/angular-styleguide/tree/master/a1
