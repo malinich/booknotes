@@ -13,6 +13,8 @@
 #### http
 + [Requests][7]
 
+#### websocket
++ [hipochat][11]
 #### test
 + [responses][10] A utility for mocking out the Python Requests library.
 
@@ -26,3 +28,4 @@
 [8]: https://github.com/yyuu/pyenv-virtualenvwrapper
 [9]: https://github.com/yyuu/pyenv
 [10]: https://github.com/getsentry/responses
+[11]: https://github.com/Hipo/hipochat/blob/master/hipochat/chat.py
