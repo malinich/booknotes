@@ -12,8 +12,9 @@
 + [Favicon & App Icon Generator](http://www.favicon-generator.org/)
 
 
-#### converter
+#### converter/calculator
 + [from htaccess-apache  to nginx](http://winginx.com/ru/htaccess)
++ [permissions-calculator](http://permissions-calculator.org/)
 
 #### layout
 + [templates-layout](https://templates.campaignmonitor.com/build/)
