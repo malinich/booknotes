@@ -4,4 +4,4 @@
 + [YEOMAN](http://yeoman.io/learning/)
 
 #### tools
-+ [toastr]http://codeseven.github.io/toastr/demo.html
++ [toastr](http://codeseven.github.io/toastr/demo.html)
