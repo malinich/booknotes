@@ -8,6 +8,7 @@
 
 #### monitoring
 + [glances][4]
++ [getsentry](https://getsentry.com/welcome/)
 
 
 [1]: https://github.com/jkbrzt/httpie
