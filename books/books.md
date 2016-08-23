@@ -13,3 +13,6 @@
 
 #### magazines
 + [xakep](https://xakep.ru/)
+
+#### linux
++ [The GNU C Library Reference Manual](http://www.gnu.org/savannah-checkouts/gnu/libc/manual/html_node/index.html#Top)
