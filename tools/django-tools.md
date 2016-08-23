@@ -8,6 +8,11 @@
 #### extension
 + [django-extensions][3]
 
+#### websocket
++ [django-websocket-redis][4]
+
+
 [1]: https://github.com/django-silk/silk
 [2]: https://github.com/dcramer/mock-django
 [3]: http://django-extensions.readthedocs.io/
+[4]: https://github.com/jrief/django-websocket-redis
