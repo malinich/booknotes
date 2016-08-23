@@ -8,3 +8,6 @@
 
 #### ebooks
 + [is it officiial books ??? e-books in this category](http://www.e-booksdirectory.com/listing.php?category=240)
+
+#### magazines
++ [xakep](https://xakep.ru/)
