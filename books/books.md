@@ -9,6 +9,7 @@
 
 #### ebooks
 + [is it officiial books ??? e-books in this category](http://www.e-booksdirectory.com/listing.php?category=240)
++ [oreilly](http://chimera.labs.oreilly.com/tags/velocity)
 
 #### magazines
 + [xakep](https://xakep.ru/)
