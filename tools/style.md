@@ -8,7 +8,11 @@
 ## python
 + [Советы Google по кодированию на языке Python](https://habrahabr.ru/post/179271/)
 
-## css
+## css/html
 + [primercss](http://primercss.io/)The CSS toolkit and guidelines that power GitHub.
+
+## ruby
++ [primerruby](https://github.com/styleguide/ruby)
+
 
 [1]: https://github.com/johnpapa/angular-styleguide/tree/master/a1
