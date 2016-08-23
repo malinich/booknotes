@@ -7,6 +7,7 @@
 
 ## python
 + [Советы Google по кодированию на языке Python](https://habrahabr.ru/post/179271/)
++ [m3 bars group](http://m3.bars-open.ru/stories/rules-documentation.html?#)
 
 ## css/html
 + [primercss](http://primercss.io/)The CSS toolkit and guidelines that power GitHub.
