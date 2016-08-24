@@ -1,5 +1,5 @@
+run as service
 ```bash
-# run as service
 touch /home/maka/www/greenback.service
 
 systemctl enable /home/maka/www/greenback.service 
