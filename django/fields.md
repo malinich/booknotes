@@ -74,12 +74,10 @@ def get_db_prep_value(self, value, connection, prepared=False):
 # переопределите для этого метод get_db_prep_save().
 
 # Обработка данных перед сохранением
-
-#  pre_save(), если хотите изменить значение перед сохранением. Например, 
+# pre_save(), если хотите изменить значение перед сохранением. Например, 
 # поле DateTimeField использует этот метод для установки значения при auto_now или auto_now_add.
 
 # Подготовка значений при поиске в базе данных
-
 # Как и преобразование значения поля, преобразование значения для поиска(WHERE) в 
 # базе данных выполняется в две фазы.
 # get_prep_lookup() выполняет первую фазу подготовки параметров 
@@ -101,4 +99,32 @@ class HandField(models.Field):
 # Если вам нужны дополнительные преобразования значения при использовании его в 
 # запросе, вы можете переопределить метод get_db_prep_lookup().
 
+# форма
+class HandField(models.Field):
+    # ...
+
+    def formfield(self, **kwargs):
+        # This is a fairly standard way to set up some defaults
+        # while letting the caller override them.
+        defaults = {'form_class': MyFormField}
+        defaults.update(kwargs)
+        return super(HandField, self).formfield(**defaults)
+
+# get_internal_type
+# Если вы определили метод db_type(), нет необходимости использовать 
+# get_internal_type() – он не будет использоваться.
+# django.db.backends.<db_name>.base.DatabaseWrapper.data_types
+class HandField(models.Field):
+    # ...
+
+    def get_internal_type(self):
+        return 'CharField'
+
+# Чтобы указать как значения сериализуются сериализатором, переопределите метод value_to_string()
+class HandField(models.Field):
+    # ...
+
+    def value_to_string(self, obj):
+        value = self._get_val_from_obj(obj)
+        return self.get_prep_value(value)
 ```
