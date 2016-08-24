@@ -353,6 +353,7 @@ docker -d --bip 192.168.0.1/24
 ```bash
 # autorun
 # /etc/systemd/system/docker.service 
+# after systemctl daemon-reload
 [Service]
 ExecStart=/usr/bin/docker daemon -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --storage-driver aufs --tlsverify --tlscacert /etc/docker/ca.pem --tlscert /etc/docker/server.pem --tlskey /etc/docker/server-key.pem --label provider=generic
 MountFlags=slave
