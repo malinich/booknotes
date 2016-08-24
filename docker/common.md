@@ -350,3 +350,17 @@ docker -d --bip 192.168.0.1/24
 # docker run --link CONTAINER_IDENTIFIER:ALIAS 
 
 ```
+```bash
+# autorun
+# /etc/systemd/system/docker.service 
+[Service]
+ExecStart=/usr/bin/docker daemon -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --storage-driver aufs --tlsverify --tlscacert /etc/docker/ca.pem --tlscert /etc/docker/server.pem --tlskey /etc/docker/server-key.pem --label provider=generic
+MountFlags=slave
+LimitNOFILE=1048576
+LimitNPROC=1048576
+LimitCORE=infinity
+Environment=
+
+[Install]
+WantedBy=multi-user.target
+```
