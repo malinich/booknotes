@@ -30,6 +30,21 @@ GRANT CONTROL
        TO myuser;
 ```
 
+create certificate
+```sql
+use mytest;
+
+CREATE CERTIFICATE Shipping04   
+   ENCRYPTION BY PASSWORD = 'pGFD4bb925DGvbd2439587y'  
+   WITH SUBJECT = 'Sammamish Shipping Records',   
+   EXPIRY_DATE = '20161001';  
+GO
+
+GRANT TAKE OWNERSHIP
+    ON CERTIFICATE :: Shipping04   
+    TO t1_igor;
+
+```
 see the exposed permissions 
 ```sql
 use mydb;
