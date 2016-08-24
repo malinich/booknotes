@@ -47,6 +47,8 @@ class HandField(models.Field):
 
         return parse_hand(value)
 
+# Преобразование объектов Python в значения в запросе
+
 # get_prep_value()
 # если вы переопределили to_python() ва следует переопределить и 
 # get_prep_value() чтобы преобразовать объект Python обратно 
@@ -70,4 +72,33 @@ def get_db_prep_value(self, value, connection, prepared=False):
 # get_db_prep_save
 # Если ваше поле требует дополнительного преобразования данных при сохранении, 
 # переопределите для этого метод get_db_prep_save().
+
+# Обработка данных перед сохранением
+
+#  pre_save(), если хотите изменить значение перед сохранением. Например, 
+# поле DateTimeField использует этот метод для установки значения при auto_now или auto_now_add.
+
+# Подготовка значений при поиске в базе данных
+
+# Как и преобразование значения поля, преобразование значения для поиска(WHERE) в 
+# базе данных выполняется в две фазы.
+# get_prep_lookup() выполняет первую фазу подготовки параметров 
+# фильтрации: преобразование типа и проверку данных.
+# Подготавливает value для передачи в фильтр запроса (WHERE в SQL). lookup_type 
+# содержит один из фильтров Django: exact, iexact, contains ... etc
+class HandField(models.Field):
+    # ...
+
+    def get_prep_lookup(self, lookup_type, value):
+        # We only handle 'exact' and 'in'. All others are errors.
+        if lookup_type == 'exact':
+            return self.get_prep_value(value)
+        elif lookup_type == 'in':
+            return [self.get_prep_value(v) for v in value]
+        else:
+            raise TypeError('Lookup type %r not supported.' % lookup_type)
+# get_db_prep_lookup
+# Если вам нужны дополнительные преобразования значения при использовании его в 
+# запросе, вы можете переопределить метод get_db_prep_lookup().
+
 ```
