@@ -19,7 +19,7 @@ ExecStop=/usr/local/bin/docker-compose -f /home/maria/www/docker-compose.yml sto
 WantedBy=default.target
 ```
 
-fix froblem with 'Error starting daemon: error initializing graphdriver: driver not supported'
+fix froblem with 'Error starting daemon: error initializing graphdriver: driver not supported'  
 need delete --storage-driver aufs
 ```bash
 # autorun docker
