@@ -20,6 +20,7 @@ WantedBy=default.target
 ```
 
 fix froblem with 'Error starting daemon: error initializing graphdriver: driver not supported'
+need delete --storage-driver aufs
 ```bash
 # autorun docker
 # /etc/systemd/system/docker.service 
