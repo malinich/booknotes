@@ -1,5 +1,43 @@
 ```bash
-#from practice
+# run as service
+touch /home/maka/www/greenback.service
+
+systemctl enable /home/maka/www/greenback.service 
+systemctl is-enabled greenback.service
+
+[Unit]
+Description=the greenback container compose
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/local/bin/docker-compose -f /home/maria/www/docker-compose.yml up
+ExecStop=/usr/local/bin/docker-compose -f /home/maria/www/docker-compose.yml stop
+
+[Install]
+WantedBy=default.target
+```
+
+fix froblem with 'Error starting daemon: error initializing graphdriver: driver not supported'
+```bash
+# autorun docker
+# /etc/systemd/system/docker.service 
+# after systemctl daemon-reload
+[Service]
+ExecStart=/usr/bin/docker daemon -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --storage-driver aufs --tlsverify --tlscacert /etc/docker/ca.pem --tlscert /etc/docker/server.pem --tlskey /etc/docker/server-key.pem --label provider=generic
+MountFlags=slave
+LimitNOFILE=1048576
+LimitNPROC=1048576
+LimitCORE=infinity
+Environment=
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```bash
+# from practice
 # run managment - UI rabbitMQ
 docker run 
     -d 
@@ -350,18 +388,4 @@ docker -d --bip 192.168.0.1/24
 # docker run --link CONTAINER_IDENTIFIER:ALIAS 
 
 ```
-```bash
-# autorun
-# /etc/systemd/system/docker.service 
-# after systemctl daemon-reload
-[Service]
-ExecStart=/usr/bin/docker daemon -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --storage-driver aufs --tlsverify --tlscacert /etc/docker/ca.pem --tlscert /etc/docker/server.pem --tlskey /etc/docker/server-key.pem --label provider=generic
-MountFlags=slave
-LimitNOFILE=1048576
-LimitNPROC=1048576
-LimitCORE=infinity
-Environment=
 
-[Install]
-WantedBy=multi-user.target
-```
