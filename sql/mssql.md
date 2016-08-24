@@ -18,6 +18,18 @@ SELECT * FROM fn_builtin_permissions(default)
 order by class_desc, permission_name;
 ```
 
+create asymmetric key
+```sql
+use mydb;
+CREATE ASYMMETRIC KEY PacificSales09   
+    WITH ALGORITHM = RSA_2048   
+    ENCRYPTION BY PASSWORD = '<enterStrongPasswordHere>';   
+GO  
+GRANT CONTROL
+    ON ASYMMETRIC KEY :: PacificSales09   
+       TO myuser;
+```
+
 see the exposed permissions 
 ```sql
 use mydb;
