@@ -41,6 +41,14 @@ delete intermediate images
 ```bash
 docekr rmi $(docker images | grep none | awk '{print $3}')
 ```
+
+use teminal from conteaner
+```
+environment:
+    - TERM=xterm
+# or
+docker run -e TERM=xterm
+```   
 from practice 
 ```bash
 # run managment - UI rabbitMQ
