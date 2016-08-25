@@ -3,6 +3,19 @@ list of all type notyfications
 select * from sys.event_notification_event_types;
 ```
 
+notify
+```sql
+select * from sys.service_queues
+GO
+select * from sys.services
+GO
+SELECT * FROM sys.events
+GO
+SELECT * FROM sys.event_notifications
+GO
+SELECT * FROM sys.server_event_notifications 
+GO
+```
 set trigger to deny any modifications
 ```sql
 CREATE TRIGGER safety  ON DATABASE   
