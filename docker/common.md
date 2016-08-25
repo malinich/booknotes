@@ -37,8 +37,12 @@ Environment=
 WantedBy=multi-user.target
 ```
 
+delete intermediate images 
 ```bash
-# from practice
+docekr rmi $(docker images | grep none | awk '{print $3}')
+```
+from practice 
+```bash
 # run managment - UI rabbitMQ
 docker run 
     -d 
