@@ -1,5 +1,5 @@
 run as service
-```bash
+```ini
 touch /home/maka/www/greenback.service
 
 systemctl enable /home/maka/www/greenback.service 
@@ -21,7 +21,7 @@ WantedBy=default.target
 
 fix froblem with 'Error starting daemon: error initializing graphdriver: driver not supported'  
 need delete --storage-driver aufs
-```bash
+```ini
 # autorun docker
 # /etc/systemd/system/docker.service 
 # after systemctl daemon-reload
