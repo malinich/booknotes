@@ -186,3 +186,259 @@ FROM (SELECT
 GROUP BY ID, UserName, Grantor
         
 ```
+
+## Patterns for implementing field change tracking [link](http://stackoverflow.com/questions/2682782/patterns-for-implementing-field-change-tracking)
+The AuditLog table
+```sql
+CREATE TABLE [AuditLog] (
+    [AuditLogID] [int] IDENTITY (1, 1) NOT NULL ,
+    [ChangeDate] [datetime] NOT NULL CONSTRAINT [DF_AuditLog_ChangeDate] DEFAULT (getdate()),
+    [RowGUID] [uniqueidentifier] NOT NULL ,
+    [ChangeType] [varchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+    [TableName] [varchar] (128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+    [FieldName] [varchar] (128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+    [OldValue] [varchar] (8000) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+    [NewValue] [varchar] (8000) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+    [Username] [varchar] (128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+    [Hostname] [varchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+    [AppName] [varchar] (128) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+    [UserGUID] [uniqueidentifier] NULL ,
+    [TagGUID] [uniqueidentifier] NULL ,
+    [Tag] [varchar] (8000) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+)
+```
+Trigger to log inserts
+```sql
+CREATE TRIGGER LogInsert_Nodes ON dbo.Nodes
+FOR INSERT
+AS
+
+/* Load the saved context info UserGUID */
+DECLARE @SavedUserGUID uniqueidentifier
+
+SELECT @SavedUserGUID = CAST(context_info as uniqueidentifier)
+FROM master.dbo.sysprocesses
+WHERE spid = @@SPID
+
+DECLARE @NullGUID uniqueidentifier
+SELECT @NullGUID = '{00000000-0000-0000-0000-000000000000}'
+
+IF @SavedUserGUID = @NullGUID
+BEGIN
+    SET @SavedUserGUID = NULL
+END
+
+    /*We dont' log individual field changes Old/New because the row is new.
+    So we only have one record - INSERTED*/
+
+    INSERT INTO AuditLog(
+            ChangeDate, RowGUID, ChangeType, 
+            Username, HostName, AppName,
+            UserGUID, 
+            TableName, FieldName, 
+            TagGUID, Tag, 
+            OldValue, NewValue)
+
+    SELECT
+        getdate(), --ChangeDate
+        i.NodeGUID, --RowGUID
+        'INSERTED', --ChangeType
+        USER_NAME(), HOST_NAME(), APP_NAME(), 
+        @SavedUserGUID, --UserGUID
+        'Nodes', --TableName
+        '', --FieldName
+        i.ParentNodeGUID, --TagGUID
+        i.Caption, --Tag
+        null, --OldValue
+        null --NewValue
+    FROM Inserted i
+```
+
+Trigger to log Updates
+```sql
+CREATE TRIGGER LogUpdate_Nodes ON dbo.Nodes
+FOR UPDATE AS
+
+/* Load the saved context info UserGUID */
+DECLARE @SavedUserGUID uniqueidentifier
+
+SELECT @SavedUserGUID = CAST(context_info as uniqueidentifier)
+FROM master.dbo.sysprocesses
+WHERE spid = @@SPID
+
+DECLARE @NullGUID uniqueidentifier
+SELECT @NullGUID = '{00000000-0000-0000-0000-000000000000}'
+
+IF @SavedUserGUID = @NullGUID
+BEGIN
+    SET @SavedUserGUID = NULL
+END
+
+    /* ParentNodeGUID uniqueidentifier */
+    IF UPDATE (ParentNodeGUID)
+    BEGIN
+        INSERT INTO AuditLog(
+            ChangeDate, RowGUID, ChangeType, 
+            Username, HostName, AppName,
+            UserGUID, 
+            TableName, FieldName, 
+            TagGUID, Tag, 
+            OldValue, NewValue)
+        SELECT 
+            getdate(), --ChangeDate
+            i.NodeGUID, --RowGUID
+            'UPDATED', --ChangeType
+            USER_NAME(), HOST_NAME(), APP_NAME(), 
+            @SavedUserGUID, --UserGUID
+            'Nodes', --TableName
+            'ParentNodeGUID', --FieldName
+            i.ParentNodeGUID, --TagGUID
+            i.Caption, --Tag
+            d.ParentNodeGUID, --OldValue
+            i.ParentNodeGUID --NewValue
+        FROM Inserted i
+            INNER JOIN Deleted d
+            ON i.NodeGUID = d.NodeGUID
+        WHERE (d.ParentNodeGUID IS NULL AND i.ParentNodeGUID IS NOT NULL)
+        OR (d.ParentNodeGUID IS NOT NULL AND i.ParentNodeGUID IS NULL)
+        OR (d.ParentNodeGUID <> i.ParentNodeGUID)
+    END
+
+    /* Caption varchar(255) */
+    IF UPDATE (Caption)
+    BEGIN
+        INSERT INTO AuditLog(
+            ChangeDate, RowGUID, ChangeType, 
+            Username, HostName, AppName,
+            UserGUID, 
+            TableName, FieldName, 
+            TagGUID, Tag, 
+            OldValue, NewValue)
+        SELECT 
+            getdate(), --ChangeDate
+            i.NodeGUID, --RowGUID
+            'UPDATED', --ChangeType
+            USER_NAME(), HOST_NAME(), APP_NAME(), 
+            @SavedUserGUID, --UserGUID
+            'Nodes', --TableName
+            'Caption', --FieldName
+            i.ParentNodeGUID, --TagGUID
+            i.Caption, --Tag
+            d.Caption, --OldValue
+            i.Caption --NewValue
+        FROM Inserted i
+            INNER JOIN Deleted d
+            ON i.NodeGUID = d.NodeGUID
+        WHERE (d.Caption IS NULL AND i.Caption IS NOT NULL)
+        OR (d.Caption IS NOT NULL AND i.Caption IS NULL)
+        OR (d.Caption <> i.Caption)
+    END
+
+...
+
+/* ImageGUID uniqueidentifier */
+IF UPDATE (ImageGUID)
+BEGIN
+    INSERT INTO AuditLog(
+        ChangeDate, RowGUID, ChangeType, 
+        Username, HostName, AppName,
+        UserGUID, 
+        TableName, FieldName, 
+        TagGUID, Tag, 
+        OldValue, NewValue)
+    SELECT 
+        getdate(), --ChangeDate
+        i.NodeGUID, --RowGUID
+        'UPDATED', --ChangeType
+        USER_NAME(), HOST_NAME(), APP_NAME(), 
+        @SavedUserGUID, --UserGUID
+        'Nodes', --TableName
+        'ImageGUID', --FieldName
+        i.ParentNodeGUID, --TagGUID
+        i.Caption, --Tag
+        (SELECT Caption FROM Nodes WHERE NodeGUID = d.ImageGUID), --OldValue
+        (SELECT Caption FROM Nodes WHERE NodeGUID = i.ImageGUID) --New Value
+    FROM Inserted i
+        INNER JOIN Deleted d
+        ON i.NodeGUID = d.NodeGUID
+    WHERE (d.ImageGUID IS NULL AND i.ImageGUID IS NOT NULL)
+    OR (d.ImageGUID IS NOT NULL AND i.ImageGUID IS NULL)
+    OR (d.ImageGUID <> i.ImageGUID)
+END
+```
+
+Trigger to log Delete
+```sql
+CREATE TRIGGER LogDelete_Nodes ON dbo.Nodes
+FOR DELETE
+AS
+
+/* Load the saved context info UserGUID */
+DECLARE @SavedUserGUID uniqueidentifier
+
+SELECT @SavedUserGUID = CAST(context_info as uniqueidentifier)
+FROM master.dbo.sysprocesses
+WHERE spid = @@SPID
+
+DECLARE @NullGUID uniqueidentifier
+SELECT @NullGUID = '{00000000-0000-0000-0000-000000000000}'
+
+IF @SavedUserGUID = @NullGUID
+BEGIN
+    SET @SavedUserGUID = NULL
+END
+
+    /*We dont' log individual field changes Old/New because the row is new.
+    So we only have one record - DELETED*/
+
+    INSERT INTO AuditLog(
+            ChangeDate, RowGUID, ChangeType, 
+            Username, HostName, AppName,
+            UserGUID, 
+            TableName, FieldName, 
+            TagGUID, Tag, 
+            OldValue,NewValue)
+
+    SELECT
+        getdate(), --ChangeDate
+        d.NodeGUID, --RowGUID
+        'DELETED', --ChangeType
+        USER_NAME(), HOST_NAME(), APP_NAME(), 
+        @SavedUserGUID, --UserGUID
+        'Nodes', --TableName
+        '', --FieldName
+        d.ParentNodeGUID, --TagGUID
+        d.Caption, --Tag
+        null, --OldValue
+        null --NewValue
+    FROM Deleted d
+```
+And in order to know which user in the software did the update, every connection "logs itself onto SQL Server" by calling a stored procedure:
+```sql
+CREATE PROCEDURE dbo.SaveContextUserGUID @UserGUID uniqueidentifier AS
+
+/* Saves the given UserGUID as the session's "Context Information" */
+IF @UserGUID IS NULL
+BEGIN
+    PRINT 'Emptying CONTEXT_INFO because of null @UserGUID'
+    DECLARE @BinVar varbinary(128)
+    SET @BinVar = CAST( REPLICATE( 0x00, 128 ) AS varbinary(128) )
+    SET CONTEXT_INFO @BinVar
+    RETURN 0
+END
+
+DECLARE @UserGUIDBinary binary(16) --a guid is 16 bytes
+SELECT @UserGUIDBinary = CAST(@UserGUID as binary(16))
+SET CONTEXT_INFO @UserGUIDBinary
+
+
+/* To load the guid back 
+DECLARE @SavedUserGUID uniqueidentifier
+
+SELECT @SavedUserGUID = CAST(context_info as uniqueidentifier)
+FROM master.dbo.sysprocesses
+WHERE spid = @@SPID
+
+select @SavedUserGUID AS UserGUID
+*/
+```
