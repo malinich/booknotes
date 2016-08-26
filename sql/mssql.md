@@ -1,9 +1,10 @@
+## notify
+
 list of all type notyfications  
 ```sql
 select * from sys.event_notification_event_types;
 ```
-
-notify
+see notifycations
 ```sql
 select * from sys.service_queues
 GO
@@ -19,6 +20,36 @@ GO
 event type of notify for grand permissions is 
 ```
 10029	DDL_DATABASE_SECURITY_EVENTS	10016
+10005	DDL_SERVER_SECURITY_EVENTS	10002
+```
+create notifications
+```sql
+use mytest
+
+CREATE QUEUE dbo.EventNotificationQueue 
+GO 
+
+CREATE SERVICE [//mytest/EventNotificationService] 
+ON QUEUE dbo.EventNotificationQueue 
+([http://schemas.microsoft.com/SQL/Notifications/PostEventNotification]) 
+GO
+
+create event notification NotifyPermissionEventsAT
+on server for ALTER_TABLE  to service '//mytest/EventNotificationService', 'current database'
+GO
+
+create event notification NotifyPermissionEventsDDL_SERVER_SECURITY_EVENTS
+on server for DDL_SERVER_SECURITY_EVENTS  to service '//mytest/EventNotificationService', 'current database'
+GO
+
+create event notification NotifyPermissionEventsDDL_DATABASE_SECURITY_EVENTS
+on server for DDL_DATABASE_SECURITY_EVENTS  to service '//mytest/EventNotificationService', 'current database'
+GO
+
+SELECT * FROM sys.server_event_notifications 
+GO
+```
+## triggers
 ```
 set trigger to deny any modifications
 ```sql
@@ -28,6 +59,8 @@ AS
    PRINT 'You must disable Trigger "safety" to drop or alter tables!'   
    ROLLBACK;  
 ```
+
+## permissions
 
 see all builtin permissions
 ```sql
