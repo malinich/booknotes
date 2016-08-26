@@ -16,6 +16,10 @@ GO
 SELECT * FROM sys.server_event_notifications 
 GO
 ```
+event type of notify for grand permissions is 
+```
+10029	DDL_DATABASE_SECURITY_EVENTS	10016
+```
 set trigger to deny any modifications
 ```sql
 CREATE TRIGGER safety  ON DATABASE   
