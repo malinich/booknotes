@@ -49,6 +49,22 @@ GO
 SELECT * FROM sys.server_event_notifications 
 GO
 ```
+## running queries
+```sql
+SELECT sqltext.TEXT,
+req.session_id,
+req.status,
+req.command,
+req.cpu_time,
+req.total_elapsed_time
+FROM sys.dm_exec_requests req
+CROSS APPLY sys.dm_exec_sql_text(sql_handle) AS sqltext
+
+-- While running above query if you find any query which is running for long time
+-- it can be killed using following command.
+
+KILL [session_id]
+```
 ## triggers
 ```
 set trigger to deny any modifications
