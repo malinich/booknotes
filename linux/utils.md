@@ -266,3 +266,11 @@ while ping -c 1 127.0.0.1 > /dev/null; do acpi -t -f | while read tem; do notify
 ```
 webfsd -F -p 80 -u d3vid -g d3vid /home/d3vid/Documents/www/ -f index.html
 ```
+
+> disable service  
+
+```
+sudo update-rc.d avahi-daemon disable
+# or
+systemctl disable service_name.service
+```
