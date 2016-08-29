@@ -260,7 +260,8 @@ echo fs.inotify.max_user_watches=100000 | sudo tee -a /etc/sysctl.conf; sudo sys
 while ping -c 1 127.0.0.1 > /dev/null; do acpi -t -f | while read tem; do notify-send "$tem"; done; sleep 300; done
 ```
 
-> use webfs (lightweight HTTP daemon, to serve static content to http://localhost:80) [link](https://github.com/ourway/webfsd)
+> use webfs (lightweight HTTP daemon, to serve static content to http://localhost:80) [link](https://github.com/ourway/webfsd)  
+
 ```
 webfsd -F -p 80 -u d3vid -g d3vid /home/d3vid/Documents/www/ -f index.html
 ```
