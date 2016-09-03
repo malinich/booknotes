@@ -14,3 +14,13 @@ class Singleton(type):
 class MyClass(object):
     __metaclass__ = Singleton
 ```
+
+> Named tuple and optional keyword arguments
+
+```python
+>>>from collections import namedtuple
+>>> Node = namedtuple('Node', 'val left right')
+>>> Node.__new__.__defaults__ = (None,) * len(Node._fields)
+>>> Node()
+Node(val=None, left=None, right=None)
+```
