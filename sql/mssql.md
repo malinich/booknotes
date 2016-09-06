@@ -1,3 +1,8 @@
+## open port for use 
+```
+netsh advfirewall firewall add rule name="MSSQL TCP Port 1433" dir=in action=allow protocol=TCP localport=1433
+netsh advfirewall firewall add rule name="MSSQL TCP Port 1433" dir=out action=allow protocol=TCP localport=1433
+```
 ## notify
 
 list of all type notyfications  
