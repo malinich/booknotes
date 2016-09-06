@@ -65,6 +65,10 @@ CROSS APPLY sys.dm_exec_sql_text(sql_handle) AS sqltext
 
 KILL [session_id]
 ```
+## running connections
+```
+exec sp_who2 
+```
 ## triggers
 ```
 set trigger to deny any modifications
