@@ -35,3 +35,7 @@
 
 #### regexp
 + [regex101](https://regex101.com/)
+
+
+#### unicode-chars
++ [unicode-table](http://unicode-table.com/ru/)
