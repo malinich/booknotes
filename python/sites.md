@@ -4,3 +4,7 @@
 
 #### sites
 + [python on habrahabr](https://habrahabr.ru/post/205944/)
+
+
+#### patterns
++ [faif/python-patterns](https://github.com/faif/python-patterns)
