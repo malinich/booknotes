@@ -17,3 +17,6 @@ git add contributors.txt
 git commit -m 'Initial commit with contributors'
 git push -u origin master
 ```
+```
+git config --global core.autocrlf true
+```
