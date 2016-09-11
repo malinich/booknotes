@@ -16,6 +16,7 @@
 + [Favicon & App Icon Generator](http://www.favicon-generator.org/)
 + [resizeimage](http://resizeimage.net/)
 + [fa2png](http://fa2png.io/)
++ [image_to_data_uri_convertor](http://websemantics.co.uk/online_tools/image_to_data_uri_convertor/result/)
 
 
 #### converter/calculator
