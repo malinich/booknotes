@@ -39,3 +39,8 @@
 
 #### unicode-chars
 + [unicode-table](http://unicode-table.com/ru/)
+
+
+#### icons
++ [themify](https://themify.me/themify-icons)
++ [fontawesome](https://fontawesome.io/icons/)
