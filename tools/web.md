@@ -44,3 +44,4 @@
 #### icons
 + [themify](https://themify.me/themify-icons)
 + [fontawesome](https://fontawesome.io/icons/)
++ [emoji](http://www.webpagefx.com/tools/emoji-cheat-sheet/)
