@@ -15,6 +15,7 @@
 #### for images
 + [Favicon & App Icon Generator](http://www.favicon-generator.org/)
 + [resizeimage](http://resizeimage.net/)
++ [fa2png](http://fa2png.io/)
 
 
 #### converter/calculator
