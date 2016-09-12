@@ -16,3 +16,6 @@
 
 #### linux
 + [The GNU C Library Reference Manual](http://www.gnu.org/savannah-checkouts/gnu/libc/manual/html_node/index.html#Top)
+
+#### lisp
++ [mitpress](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-4.html#%_toc_start)
