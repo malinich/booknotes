@@ -24,3 +24,26 @@ class MyClass(object):
 >>> Node()
 Node(val=None, left=None, right=None)
 ```
+
+> Thread wrapper
+
+```python
+class ThreadPoolExecutorStackTraced(ThreadPoolExecutor):
+    def submit(self, fn, *args, **kwargs):
+        """Submits the wrapped function instead of `fn`"""
+
+        return super(ThreadPoolExecutorStackTraced, self).submit(
+            self._function_wrapper, fn, *args, **kwargs)
+
+    def _function_wrapper(self, fn, *args, **kwargs):
+        """Wraps `fn` in order to preserve the traceback of any kind of
+        raised exception
+
+        """
+        try:
+            return fn(*args, **kwargs)
+        except Exception as e:
+            logger.exception('notify error')
+            print e
+            raise sys.exc_info()[0](traceback.format_exc())
+```
