@@ -1,3 +1,8 @@
+## create login
+```sql
+CREATE LOGIN "AQM" WITH PASSWORD = 'maka';  
+GO 
+```
 ## open port for use 
 ```
 netsh advfirewall firewall add rule name="MSSQL TCP Port 1433" dir=in action=allow protocol=TCP localport=1433
