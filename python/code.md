@@ -47,3 +47,20 @@ class ThreadPoolExecutorStackTraced(ThreadPoolExecutor):
             print e
             raise sys.exc_info()[0](traceback.format_exc())
 ```
+
+> Get object by ID
+
+```python
+import ctypes
+a = "hello world"
+print ctypes.cast(id(a), ctypes.py_object).value
+
+# ver2
+import gc
+
+def objects_by_id(id_):
+    for obj in gc.get_objects():
+        if id(obj) == id_:
+            return obj
+    raise Exception("No found")
+```
