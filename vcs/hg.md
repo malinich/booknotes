@@ -11,5 +11,5 @@ hg qdelete -r qbase:qtip
 > see changed files in changeset
 
 ```
-hg status --change 30
+hg status --change rev_number
 ```
