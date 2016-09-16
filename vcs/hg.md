@@ -16,6 +16,9 @@ hg status --change rev_number
 
 > see difference between revs
 
-```
+```bash
+# v.1
 hg diff -r 29 -r 30
+# v2
+hg log -p -l 1
 ```
