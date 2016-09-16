@@ -13,3 +13,9 @@ hg qdelete -r qbase:qtip
 ```
 hg status --change rev_number
 ```
+
+> see difference between revs
+
+```
+hg diff -r 29 -r 30
+```
