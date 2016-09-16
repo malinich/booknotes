@@ -7,3 +7,9 @@ joe .hg/patches/498.diff
 hg qpush -a
 hg qdelete -r qbase:qtip
 ```
+
+> see changed files in changeset
+
+```
+hg status --change 30
+```
