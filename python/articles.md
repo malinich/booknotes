@@ -5,3 +5,16 @@
 #### porting 2 to 3
 + [pyporting](https://docs.python.org/3/howto/pyporting.html)
 + [python future](http://python-future.org/index.html)
+
+
+> logger level
+
+
+| Level   | Numeric value|
+| --------| ------------:|
+|CRITICAL	|           50 |
+|ERROR	  |           40 |
+|WARNING	|           30 |
+|INFO	    |           20 |
+|DEBUG	  |           10 |
+|NOTSET	  |            0 |
