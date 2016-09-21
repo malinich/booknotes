@@ -1,3 +1,8 @@
+## alter schema
+```sql
+ALTER SCHEMA guest TRANSFER [dbo].[Sequence-20160726-132132];  
+```
+
 ## create login
 ```sql
 CREATE LOGIN "AQM" WITH PASSWORD = 'maka';  
