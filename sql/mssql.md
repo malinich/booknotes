@@ -1,3 +1,24 @@
+## object id
+```sql
+SELECT
+  [sys].[objects].name,
+  [sys].[objects].object_id,
+  [sys].[objects].principal_id,
+  [sys].[objects].schema_id,
+  [sys].[objects].parent_object_id,
+  [sys].[objects].type,
+  [sys].[objects].type_desc,
+  [sys].[objects].is_ms_shipped,
+  [sys].[objects].is_published,
+  [sys].[objects].is_schema_published,
+  [sys].[objects].create_date,
+  [sys].[objects].modify_date,
+  [sys].[schemas].name AS SchemaName
+FROM [sys].[objects]
+  LEFT OUTER JOIN [sys].[schemas] ON ([sys].[objects].schema_id = [sys].[schemas].schema_id)
+ORDER BY type_desc
+```
+
 ## db id 
 ```sql
 SELECT * FROM master.dbo.sysdatabases
