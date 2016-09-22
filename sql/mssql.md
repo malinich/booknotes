@@ -1,3 +1,8 @@
+## db id 
+```sql
+SELECT * FROM master.dbo.sysdatabases
+```
+
 ## alter schema
 ```sql
 ALTER SCHEMA guest TRANSFER [dbo].[Sequence-20160726-132132];  
