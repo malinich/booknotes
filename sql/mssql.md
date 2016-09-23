@@ -1,7 +1,13 @@
 ## all users for all databases
 ```sql
 DECLARE @DB_USers TABLE
-(DBName SYSNAME, UserName SYSNAME, LoginType SYSNAME, AssociatedRole VARCHAR(MAX), create_date DATETIME, modify_date DATETIME, sid BINARY(32))
+( DBName SYSNAME, 
+  UserName SYSNAME, 
+  LoginType SYSNAME, 
+  AssociatedRole VARCHAR(MAX), 
+  create_date DATETIME, 
+  modify_date DATETIME, 
+  sid BINARY(32))
 INSERT @DB_USers
 EXEC sp_MSforeachdb
     '
@@ -44,6 +50,7 @@ FROM @DB_USers user1
 GROUP BY
   dbname, username, logintype, create_date, modify_date, sid
 ORDER BY DBName, username
+
 
 ```
 ## object id
