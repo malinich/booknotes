@@ -1,4 +1,5 @@
 ## all users for all databases
+(link)[https://www.pythian.com/blog/httpconsultingblogs-emc-comjamiethomsonarchive20070209sql-server-2005_3a00_-view-all-permissions-_2800_2_2900_-aspx/]
 ```sql
 DECLARE @DB_USers TABLE
 ( DBName SYSNAME, 
