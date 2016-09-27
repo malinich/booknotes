@@ -1,3 +1,18 @@
+## select modified objects
+```sql
+use mytest;
+GO
+SELECT name AS object_name 
+  ,SCHEMA_NAME(schema_id) AS schema_name
+  ,type_desc
+  ,create_date
+  ,modify_date
+FROM sys.objects
+WHERE modify_date > GETDATE() - 5
+ORDER BY modify_date;
+GO
+```
+
 ## all users for all databases
 
 [link](https://www.pythian.com/blog/httpconsultingblogs-emc-comjamiethomsonarchive20070209sql-server-2005_3a00_-view-all-permissions-_2800_2_2900_-aspx/)
