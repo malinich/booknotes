@@ -53,4 +53,18 @@ def _logon(self):
 def _logoff(self, _authHandle):
     win32security.RevertToSelf()
     _authHandle.Close()
+    
+def _doAuth(self, pkg_name):
+    auth_info = self.client_user.split('\\')[1], \
+                self.client_user.split('\\')[0], self.client_password
+    sspiclient = sspi.ClientAuth(pkg_name, auth_info=auth_info,
+                                 targetspn='dv-demo-01@sportacadem.ru')  # win32api.GetUserName())
+    sspiserver = sspi.ServerAuth(pkg_name)
+
+    sec_buffer = None
+    err = 1
+    while err != 0:
+        err, sec_buffer = sspiclient.authorize(sec_buffer)
+        err, sec_buffer = sspiserver.authorize(sec_buffer)
+    return sspiclient, sspiserver
 ```
