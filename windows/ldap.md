@@ -49,4 +49,8 @@ def _logon(self):
     win32security.ImpersonateLoggedOnUser(_authHandle)
     print ">>", win32api.GetUserName()
     return _authHandle
+    
+def _logoff(self, _authHandle):
+    win32security.RevertToSelf()
+    _authHandle.Close()
 ```
