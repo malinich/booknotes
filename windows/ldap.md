@@ -9,6 +9,16 @@ groupobj = win32com.adsi.ADsGetObject(path)
 users = groupobj.member
 print len(users)
 
+# by DC
+def get_display_name(self, subject_key, *args, **kwargs):
+    try:
+        name_parts = subject_key.split('\\')
+        if len(name_parts) > 1:
+            subject_key = name_parts[1]
+        return win32net.NetUserGetInfo(self.get_domain_controller(), subject_key, 2).get('full_name')
+    except Exception:
+        return None
+            
 # by sid
 def sid_display_name(sid, display_name):
     if is_sid(sid):
