@@ -10,6 +10,12 @@ users = groupobj.member
 print len(users)
 
 # by DC
+def get_domain_controller(self):
+    try:
+        return win32security.DsGetDcName(self.host)['DomainName']
+    except:
+        return None
+            
 def get_display_name(self, subject_key, *args, **kwargs):
     try:
         name_parts = subject_key.split('\\')
