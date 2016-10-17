@@ -10,18 +10,29 @@ users = groupobj.member
 print len(users)
 
 # by DC
-def get_domain_controller(self):
+
+def domain_controller(host):
     try:
-        return win32security.DsGetDcName(self.host)['DomainName']
+        return win32security.DsGetDcName(host)['DomainName']
     except:
         return None
-            
-def get_display_name(self, subject_key, *args, **kwargs):
+
+
+def principal_display_name(host, subject_key):
+    """
+
+    :param host: server where need search
+    :type host: str
+    :param subject_key: msDS-PrincipalName, like demo\\administrator
+    :type subject_key: str
+    :return:
+    :rtype:
+    """
     try:
         name_parts = subject_key.split('\\')
         if len(name_parts) > 1:
             subject_key = name_parts[1]
-        return win32net.NetUserGetInfo(self.get_domain_controller(), subject_key, 2).get('full_name')
+        return win32net.NetUserGetInfo(domain_controller(host), subject_key, 2).get('full_name')
     except Exception:
         return None
             
