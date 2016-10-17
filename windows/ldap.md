@@ -85,6 +85,25 @@ def _impersonateNTLM(self):
 
 create COM connection
 ```python
+def adjust_privilege(priv, enable=1):
+    import win32api
+    from pywin.debugger import fail
+    # Get the process token.
+    flags = win32con.TOKEN_ADJUST_PRIVILEGES | win32con.TOKEN_QUERY
+    token = win32security.OpenProcessToken(win32api.GetCurrentProcess(), flags)
+    # Get the ID for the privilege.
+    pid = win32security.LookupPrivilegeValue(None, priv)
+    # Now obtain the privilege for this process. # Create a list of the privileges to be added.
+    if enable:
+        newPrivileges = [(pid, win32security.SE_PRIVILEGE_ENABLED)]
+    else:
+        newPrivileges = [(pid, 0)]
+    # and make the adjustment.
+    try:
+        win32security.AdjustTokenPrivileges(token, 0, newPrivileges)
+    except Exception as e:
+        fail.append(priv)
+    
 def get_privilege(privilege_name):
     privilege = None
     try:
