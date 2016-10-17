@@ -67,4 +67,12 @@ def _doAuth(self, pkg_name):
         err, sec_buffer = sspiclient.authorize(sec_buffer)
         err, sec_buffer = sspiserver.authorize(sec_buffer)
     return sspiclient, sspiserver
+
+def _impersonate(self, pkg_name):
+    print "> ", win32api.GetUserName()
+    # Just for the sake of code exercising!
+    sspiclient, sspiserver = self._doAuth(pkg_name)
+    sspiserver.ctxt.ImpersonateSecurityContext()
+    print ">>", win32api.GetUserName()
+    return sspiserver
 ```
