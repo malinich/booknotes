@@ -75,4 +75,10 @@ def _impersonate(self, pkg_name):
     sspiserver.ctxt.ImpersonateSecurityContext()
     print ">>", win32api.GetUserName()
     return sspiserver
+    
+def _revert_to_self(self, sspiserver):
+    sspiserver.ctxt.RevertSecurityContext()
+
+def _impersonateNTLM(self):
+    return self._impersonate("NTLM")
 ```
