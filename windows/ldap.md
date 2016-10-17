@@ -1,3 +1,4 @@
+```python
 import win32com.adsi
 
 # by path
@@ -11,3 +12,4 @@ print len(users)
 $strSID="S-1-5-21-500000003-1000000000-1000000003-1001"
 $uSid = [ADSI]"LDAP://<SID=$strSID>"
 echo $uSid
+```
