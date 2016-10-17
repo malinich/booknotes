@@ -9,7 +9,10 @@ users = groupobj.member
 print len(users)
 
 # by sid
-$strSID="S-1-5-21-500000003-1000000000-1000000003-1001"
-$uSid = [ADSI]"LDAP://<SID=$strSID>"
-echo $uSid
+def sid_display_name(sid, display_name):
+    if is_sid(sid):
+        path_ldap = 'LDAP://<SID={}>'.format(sid)
+        userobj = win32com.adsi.ADsGetObject(path_ldap)
+        display_name = userobj.displayname
+    return display_name
 ```
