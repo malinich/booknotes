@@ -10,3 +10,9 @@ VBoxManage modifyvm "VirtualMachine Name" --hda none
 VBoxManage modifyvm "VirtualMachine Name" --hda winXP20.vdi
 # after meed use gparted in liveCD for expand disk
 ```
+
+delete hdd
+```
+VBoxManage.exe list hdds
+vboxmanage closemedium disk 36315ac8-9f0f-4d23-a00c-fdd07b2d17c5 --delete
+```
