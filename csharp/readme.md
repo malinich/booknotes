@@ -134,6 +134,7 @@ namespace DVConverter
 
 ```
 _assembly of com object_
+sn -k DVConverter.snk
 
 ```C#
 using System.Reflection;
