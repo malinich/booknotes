@@ -1,3 +1,4 @@
+```python
 from __future__ import unicode_literals
 
 # sid="S-1-9-0-2534816399-1133156984-2917391785-2514697442"
@@ -44,3 +45,4 @@ class Pa(object):
         ls = IPickerExtension.LookupSids.__get__(pp)
         ls(qs, commonNames, objectClasses, objectUPNs)
         return commonNames, objectClasses, objectUPNs
+```
