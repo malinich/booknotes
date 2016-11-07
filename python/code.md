@@ -64,3 +64,15 @@ def objects_by_id(id_):
             return obj
     raise Exception("No found")
 ```
+
+> get traceback from ext object
+
+```python
+import sys, traceback
+try:
+    raise Exception
+except Exception:
+    ex_type, ex, tb = sys.exc_info()
+    traceback.print_tb(tb)
+
+```
