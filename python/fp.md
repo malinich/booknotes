@@ -99,3 +99,44 @@ source(split_perms,
         caller(perms.append)))
  
 ```
+
+#### utils
+
+```python
+def handle_error_func(func):
+    @functools.wraps(func)
+    def wrap(*args, **kwargs):
+        try:
+            res, error = func(*args, **kwargs), None
+        except Exception as e:
+            res, error = None, e.message or e.__class__.__name__
+        return res, error
+
+    return wrap
+
+
+def error_chain(*steps):
+    funcs = steps[::-1]
+
+    def wrap(*args, **kwargs):
+        res, error = funcs[0](*args, **kwargs)
+        if error:
+            return res, error
+
+        for func in funcs[1:]:
+            res, error = func(res)
+            if error:
+                res = None
+                break
+        return res, error
+    return wrap
+```
+> use
+
+```python
+sid, error = error_chain(
+    handle_error_func(convert_to_sid),
+    handle_error_func(binary_sid)
+    )(hexlify(user.sid)[2:])
+sid = hexlify(user.sid) if error else sid
+```
