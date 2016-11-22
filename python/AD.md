@@ -76,3 +76,17 @@ def binary_sid(hexlified):
     packed = struct.pack("55B", *map(int_16, str(hexlified)))
     return packed
  ```
+ 
+ #### lookup
+ ```python
+ def lookup_sid(name, server=None):
+    """
+    Get user SID
+    Args:
+        name (str): name
+        server (str): server to lookup on
+    Returns:
+        str: SID
+    """
+    return win32security.ConvertSidToStringSid(win32security.LookupAccountName(server, name)[0])
+ ```
