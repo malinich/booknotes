@@ -52,8 +52,8 @@ def _get_domain_controller(self):
             
  ```
  
- #### convert to sid
- 
+#### convert to sid
+
  ```python
  def convert_to_sid(binary):
     version = struct.unpack('B', binary[0])[0]
