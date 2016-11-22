@@ -140,3 +140,27 @@ sid, error = error_chain(
     )(hexlify(user.sid)[2:])
 sid = hexlify(user.sid) if error else sid
 ```
+
+#### need think to complete
+
+```python
+def extract_users_roles_wrapper(func):
+    num = 2
+    count = [num]
+    func_store = [None]
+
+    def wrap(self):
+        f_mock = func_store[0]
+        if not f_mock:
+            f_mock = itertools.tee(func(self), num)
+            func_store[0] = f_mock
+        if count[0]:
+            count[0] -= 1
+            return f_mock[count[0]]
+        else:
+            count[0] = num
+            func_store[0] = None
+            return wrap(self)
+
+    return wrap
+```
