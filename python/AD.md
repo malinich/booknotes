@@ -1,4 +1,4 @@
-#### sit to name
+#### sid to name
     
 ```python
 def decode_sid(self, server, sid):
@@ -51,6 +51,7 @@ def _get_domain_controller(self):
         return None
             
  ```
+ 
  #### convert to sid
  
  ```python
