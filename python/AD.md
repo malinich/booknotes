@@ -51,3 +51,23 @@ def _get_domain_controller(self):
         return None
             
  ```
+ 
+ #### convert to sid
+ 
+ ```python
+ def convert_to_sid(binary):
+    version = struct.unpack('B', binary[0])[0]
+    # I do not know how to treat version != 1 (it does not exist yet)
+    if version != 1:
+        return None
+
+    length = struct.unpack('B', binary[1])[0]
+    authority = struct.unpack('>Q', '\x00\x00' + binary[2:8])[0]
+    string = 'S-%d-%d' % (version, authority)
+    binary = binary[8:]
+    assert len(binary) == 4 * length
+    for i in range(length):
+        value = struct.unpack('<L', binary[4 * i:4 * (i + 1)])[0]
+        string += '-%d' % (value)
+    return string
+ ```
