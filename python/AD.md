@@ -70,4 +70,9 @@ def _get_domain_controller(self):
         value = struct.unpack('<L', binary[4 * i:4 * (i + 1)])[0]
         string += '-%d' % (value)
     return string
+    
+def binary_sid(hexlified):
+    int_16 = functools.partial(int, base=16)
+    packed = struct.pack("55B", *map(int_16, str(hexlified)))
+    return packed
  ```
