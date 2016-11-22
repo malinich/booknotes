@@ -51,7 +51,6 @@ def _get_domain_controller(self):
         return None
             
  ```
- 
  #### convert to sid
  
  ```python
