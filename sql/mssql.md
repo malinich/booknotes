@@ -1,6 +1,6 @@
 ## user mapping
 ```sql
-exec sp_msloginmappings 'DEMO\igor.malinov', 0
+exec sp_msloginmappings 'DEMO\igor', 0
 ```
 
 ## select modified objects
