@@ -77,7 +77,7 @@ Value	Definition
 22611	XMLSchema
 22868	Type
 ```
-```
+
 ## codes of type objects
 ```
 AF = Aggregate function (CLR)
