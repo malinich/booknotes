@@ -1,4 +1,4 @@
-## object types
+## Object Type Column Values
 ```
 Value	Definition
 8259	Check Constraint
