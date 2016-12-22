@@ -77,7 +77,10 @@ Value	Definition
 22611	XMLSchema
 22868	Type
 ```
-
+## securable class
+```
+select * from sys.securable_classes
+```
 ## codes of type objects
 ```
 AF = Aggregate function (CLR)
