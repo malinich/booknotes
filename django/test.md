@@ -1,4 +1,4 @@
-> test by log
+> test logger
 
 ```python
 class MockLoggingHandler(logging.Handler):
