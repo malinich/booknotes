@@ -1,3 +1,9 @@
+```sql
+# change collation
+ALTER DATABASE diffapp CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER TABLE onesclient_onesserverconfig CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+```
+
 ```bash
 sudo mkdir /var/run/mysqld
 sudo mkfifo /var/run/mysqld/mysqld.sock
