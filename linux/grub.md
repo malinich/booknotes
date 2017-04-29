@@ -35,3 +35,9 @@ root (hd0,1)
 makeactive
 chainloader +1
 ```
+
+reinstall
+sudo update-grub
+sudo grub-install /dev/sda
+sudo update-grub
+sudo reboot
