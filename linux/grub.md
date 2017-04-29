@@ -36,8 +36,10 @@ makeactive
 chainloader +1
 ```
 
-reinstall
+> reinstall  
+```bash
 sudo update-grub
 sudo grub-install /dev/sda
 sudo update-grub
 sudo reboot
+```
