@@ -38,5 +38,5 @@ if __name__ == '__main__':
     pythoncom.CoUninitialize()
     
 # i use only gencache.EnsureDispatch('Mtb.Application')
-it help to see methods
+# it help to see methods
 ```
