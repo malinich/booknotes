@@ -1,9 +1,10 @@
 > release Com
 
 ```python
+# pip install comtypes
+
 from comtypes.automation import IDispatch
 from ctypes import c_void_p, cast, POINTER, byref
-from win32com.client import gencache
 
 def release_reference(self, obj):
     logger.debug("release com object")
