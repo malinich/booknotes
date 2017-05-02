@@ -19,6 +19,8 @@ def release_reference(self, obj):
 
 ```python
 import weakref
+from win32com.client import CLSIDToClass
+from win32com.client.gencache import EnsureModule, GetModuleForCLSID
 from win32com.client import gencache
 import pythoncom
 
