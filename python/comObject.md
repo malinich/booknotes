@@ -43,3 +43,30 @@ if __name__ == '__main__':
 # i use only gencache.EnsureDispatch('Mtb.Application')
 # it help to see methods
 ```
+
+> Memory Leak in Threaded COM Object with Python
+```python
+from win32process import SetProcessWorkingSetSize
+from win32api import GetCurrentProcessId, OpenProcess
+from win32con import PROCESS_ALL_ACCESS
+
+import win32com.client
+import threading
+import pythoncom
+
+def CreateTom():
+    pythoncom.CoInitialize()
+    tom = win32com.client.Dispatch("TOM.Document")
+    tom.Dataset.Load("FileName")
+    tom.Clear()
+    pythoncom.CoUninitialize()
+    SetProcessWorkingSetSize(handle,-1,-1) #Releases memory after every use
+
+pid = GetCurrentProcessId()
+handle = OpenProcess(PROCESS_ALL_ACCESS, True, pid)
+
+for i in range(50):
+    t = threading.Thread(target = CreateTom)
+    t.daemon = False
+    t.start()
+```
