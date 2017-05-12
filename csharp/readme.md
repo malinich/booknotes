@@ -1,6 +1,8 @@
 ```C#
 // install all dependenies
 Install-Package Costura.Fody
+Install-Package Fielder.Fody
+Install-Package PropertyChanged.Fody
 ```
 
 
