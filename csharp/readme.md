@@ -3,6 +3,29 @@
 Install-Package Costura.Fody
 ```
 
+
+```xml
+<!-- create FodyWeavers.xml -->
+<?xml version="1.0" encoding="utf-8"?>
+<Weavers>
+  <Fielder />
+  <PropertyChanged />
+  <Costura DisableCompression='false' />
+</Weavers>
+```
+```xml
+<!-- packages.config -->
+<?xml version="1.0" encoding="utf-8"?>
+<packages>
+  <package id="Costura.Fody" version="1.3.3.0" targetFramework="net45" developmentDependency="true" />
+  <package id="Fielder.Fody" version="1.0.12" targetFramework="net45" developmentDependency="true" />
+  <package id="Fody" version="1.29.4" targetFramework="net45" developmentDependency="true" />
+  <package id="Microsoft.Build.Runtime" version="15.1.1012" targetFramework="net45" />
+  <package id="PropertyChanged.Fody" version="1.52.1" targetFramework="net45" developmentDependency="true" />
+  <package id="Microsoft.Sharepoint.2013.Client.16" version="1.0.0" targetFramework="net45" />
+</packages>
+```
+
 _example com object_
 
 ```C#
