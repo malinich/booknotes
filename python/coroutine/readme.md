@@ -27,3 +27,67 @@ for i in range(3):
     worker.start()
 print(cor.history)
 ```
+
+> examples
+```python
+def coroutine(fn):
+    """Декоратор, обеспечивающий запуск сопроцедуры при вызове"""
+    def wrapper(*args, **kwargs):
+        obj = fn(*args, **kwargs)
+        obj.next()
+        return obj
+    return wrapper
+
+
+def source(iterable, target):
+    """Источник "скармливающий" данные из итератора в сопроцедуру-получатель"""
+    for i in iterable:
+        target.send(i)
+
+
+@coroutine
+def filter_(pred, target):
+    """Сопроцедура-фильтр"""
+    while True:
+        x = (yield)
+        if pred(x):
+            target.send(x)
+
+@coroutine
+def map_(fn, target):
+    """Сопроцедура - применятель"""
+    while True:
+        target.send(fn((yield)))
+
+@coroutine
+def broadcast(*targets):
+    """Сопроцедура - разветвитель"""
+    while True:
+        x = (yield)
+        for t in targets:
+            t.send(x)
+
+@coroutine
+def printer(fmt="%s"):
+    """Сток, выводящий данные в стандартный вывод"""
+    while True:
+        print fmt % ((yield))
+
+
+@coroutine
+def reducer(fn, initial, target):
+    """Сопроцедура, производящая свертку данных"""
+    res = initial
+    while True:
+        try:
+            res = fn(res, (yield))
+        except GeneratorExit:
+            target.send(res)
+            raise StopIteration()
+
+@coroutine
+def caller(fn):
+    """Сток, вызывающий для каждого элемента данных указанную функцию"""
+    while True:
+        fn((yield))
+```
