@@ -1,5 +1,5 @@
+> coroutine + thread
 ```python
-# Coroutine + thread
 from threading import Thread, current_thread
 from random import randint
 import time
