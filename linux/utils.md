@@ -274,3 +274,8 @@ sudo update-rc.d avahi-daemon disable
 # or
 systemctl disable service_name.service
 ```
+
+#### sed
+```bash
+find ./ -maxdepth 1 -regextype sed -regex ".\/9787561923177.*" -print 
+```
