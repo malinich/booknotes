@@ -141,6 +141,21 @@ sid, error = error_chain(
 sid = hexlify(user.sid) if error else sid
 ```
 
+> get_item
+```python
+def get_item(data, *keys):
+    res, error = data, None
+    key, keys = keys[:1], keys[1:]
+    if key:
+        res, error = error_chain(handle_error_func(operator.methodcaller("__getitem__", key[0])))(data)
+        if not error:
+            return get_item(res, *keys)
+    return res, error
+
+# use
+data, _ = get_item({"data": "path": [0]}, 'data', 'results', 0)
+```
+
 #### need think to complete
 
 ```python
