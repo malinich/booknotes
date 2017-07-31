@@ -159,6 +159,7 @@ namespace DVConverter
 
 ```
 _assembly of com object_
+// C:\Program Files\Microsoft SDKs\Windows\v6.0A\bin\x64/sn.exe
 sn -k DVConverter.snk
 
 ```C#
