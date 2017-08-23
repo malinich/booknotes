@@ -96,6 +96,7 @@ xrandr --output VGA1 --mode "1360x768_60.00"
 ```
 
 <blockquote><sub>add two monitos</sub></blockquote>
+
 ```bash
 # After  the output, let's suppose that you have a laptop which panel is LVDS and an external VGA  port which we will regard as VGA, we execute:
 $ xrandr --output VGA1 --mode 1280x1024 --right-of LVDS1
@@ -110,6 +111,7 @@ xrandr --output LVDS1  --output VGA1 --mode 1440x900 --same-as LVDS1
 ```
 
 <blockquote><sub>brightness</sub></blockquote>
+
 ```bash
 sudo su -c "echo 4500 > /sys/class/backlight/intel_backlight/brightness"
 ```
