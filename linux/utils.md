@@ -215,6 +215,7 @@ sudo mount /dev/sda5 /media
 ```
 
 ####<blockquote>ip
+
 ```bash
 ip addr show 
 cat tcp
