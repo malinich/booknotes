@@ -229,14 +229,14 @@ awk 'NR==3 {printf "%.1f%%\\n",($3/70)*100}' /proc/net/wireless
 # $3 - это третье слово 0-вся строка 
 ```
 
-#### >sed
+> ####sed
 ```bash
 rename 's/\.bak$//' *.bak # переименовать массово
 find /home/maka/Dropbox/phone/ -type f -print0 -name "*.vnt" |xargs -0 sed -i.bak 's/=0D=0A/\n/'  # replace 1 раз
 find /home/maka/Dropbox/phone/ -name "2014-06-18.19.34.38.vnt" -print0 |xargs -0 sed -i.bak 's/=0D=0A/\n/g' # много раз
 ```
 
-#### > Xinput
+> ####Xinput
 ```bash
 xinput list-props 12
 xinput --help
@@ -256,17 +256,17 @@ xinput list
 # find "Touchpad" and remembe id: forexample is 15
 xinput set-prop 15 "Device Enabled" 0
 ```
-#### > battary
+>#### battary
 ```bash
 upower -i $(upower -e | grep 'BAT') | grep -E "state|to\ full|percentage"
 ```
 
-#### > libs
+>#### libs
 ```
 apt-file search libXss.so
 ```
 
-#### >notifi
+>####notifi
 ```
 echo fs.inotify.max_user_watches=100000 | sudo tee -a /etc/sysctl.conf; sudo sysctl -p
 
