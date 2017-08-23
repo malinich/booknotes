@@ -94,6 +94,7 @@ xrandr --newmode "1360x768_60.00" 84.75  1360 1432 1568 1776  768 771 781 798 -h
 xrandr --addmode VGA1 "1360x768_60.00"
 xrandr --output VGA1 --mode "1360x768_60.00"
 ```
+
 <blockquote><sub>add two monitos</sub></blockquote>
 ```bash
 # After  the output, let's suppose that you have a laptop which panel is LVDS and an external VGA  port which we will regard as VGA, we execute:
