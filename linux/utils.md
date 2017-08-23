@@ -108,14 +108,17 @@ $ xrandr --output VGA --off
 # mirror
 xrandr --output LVDS1  --output VGA1 --mode 1440x900 --same-as LVDS1
 ```
+
 <blockquote><sub>brightness</sub></blockquote>
 ```bash
 sudo su -c "echo 4500 > /sys/class/backlight/intel_backlight/brightness"
 ```
+
 #### <blockquote> version of Ubuntu
 ```
 lsb_release -a
 ```
+
 #### <blockquote>show capacity of folders
 ```
 find -size +10M -exec du -sh {} \;
@@ -147,6 +150,7 @@ sudo update-grub
 # смена оконного менеджера
 sudo update-alternatives --config x-display-manager
 ```
+
 #### <blockquote>find
 ```bash
 # найти файлы больще 100 mb
@@ -160,6 +164,7 @@ touch --date "2007-01-01" /tmp/start
 touch --date "2008-01-01" /tmp/end
 find /data/images -type f -newer /tmp/start -not -newer /tmp/end
 ```
+
 #### <blockquote> pppoe
 ```bash
 # настройка pppoe:
@@ -172,6 +177,7 @@ iface ppp0 inet ppp
 sudo poff pppoe 
 sudo pon pppoe
 ```
+
 #### <blockquote> sound
 ```bash
 amixer -D pulse sset Master 100% on
@@ -182,6 +188,7 @@ fuser -v /dev/snd/*
 ## sset volume more than 100%
 pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo 200%
 ```
+
 #### <blockquote>use command in background
 ```bash
 nohup command-name &
@@ -194,6 +201,7 @@ mkswap /swapfile
 swapon /swapfile
 /swapfile swap swap defaults 0 0 to /etc/fstab
 ```
+
 #### <blockquote> sudo
 ```bash
 # allow user to reboot computer
@@ -226,6 +234,7 @@ rename 's/\.bak$//' *.bak # переименовать массово
 find /home/maka/Dropbox/phone/ -type f -print0 -name "*.vnt" |xargs -0 sed -i.bak 's/=0D=0A/\n/'  # replace 1 раз
 find /home/maka/Dropbox/phone/ -name "2014-06-18.19.34.38.vnt" -print0 |xargs -0 sed -i.bak 's/=0D=0A/\n/g' # много раз
 ```
+
 ####<blockquote>Xinput
 ```bash
 xinput list-props 12
