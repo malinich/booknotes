@@ -13,7 +13,7 @@ pyenv rehash
 # fix pip
 curl https://bootstrap.pypa.io/get-pip.py | python
 pip install virtualenvwrapper
-echo 'WORKON_HOME' >> ~/.bashrc
+echo 'export WORKON_HOME="$HOME/ENV"' >> ~/.bashrc
 
 mkdir -p $WORKON_HOME
 mkdir -p ~/.pyenv/plugins
