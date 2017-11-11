@@ -12,6 +12,10 @@ dockeradmin     ALL=(ALL) NOPASSWD: ALL
 ```bash
 $ docker-machine create -d generic --generic-ip-address 192.168.100.2 --generic-ssh-key $HOME/.ssh/id_rsa --generic-ssh-user dockeradmin --generic-ssh-port 22 dev-db
 $ docker-machine ls
+
+# example
+docker-machine create --driver=generic --generic-ip-address=146.185.xxx.xxx --generic-ssh-user=admin --generic-ssh-key=/home/maka/.ssh/vpn --generic-ssh-port=2222 fr2
+
 ```
 
 <sub> manual </sub>   
