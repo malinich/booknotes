@@ -19,8 +19,7 @@ curl -O https://download.docker.com/linux/ubuntu/dists/zesty/pool/stable/amd64/d
 sudo dpkg -i docker-ce_17.09.0~ce-0~ubuntu_amd64.deb
 sudo usermod -a -G docker $USER
 
-curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > \
-/usr/local/bin/docker-compose
+sudo curl -L https://github.com/docker/compose/releases/download/1.17.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 
 chmod +x /usr/local/bin/docker-compose
 docker-compose --version
