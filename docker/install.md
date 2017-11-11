@@ -1,4 +1,4 @@
-> compose
+> docker
 
 ```
 sudo apt-get install \
@@ -18,9 +18,21 @@ sudo add-apt-repository \
 curl -O https://download.docker.com/linux/ubuntu/dists/zesty/pool/stable/amd64/docker-ce_17.09.0~ce-0~ubuntu_amd64.deb
 sudo dpkg -i docker-ce_17.09.0~ce-0~ubuntu_amd64.deb
 sudo usermod -a -G docker $USER
+```
 
+> compose
+```
 sudo curl -L https://github.com/docker/compose/releases/download/1.17.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 
 chmod +x /usr/local/bin/docker-compose
 docker-compose --version
+```
+
+> mashine
+
+```
+curl -L https://github.com/docker/machine/releases/download/v0.13.0/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine &&
+chmod +x /tmp/docker-machine &&
+sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
+
 ```
