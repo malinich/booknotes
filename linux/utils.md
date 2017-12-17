@@ -294,3 +294,21 @@ systemctl disable service_name.service
 ```bash
 find ./ -maxdepth 1 -regextype sed -regex ".\/9787561923177.*" -print 
 ```
+
+#### Change Login Screen Background in Ubuntu 17.10
+```bash
+xhost +local: && sudo gedit /etc/alternatives/gdm3.css
+# change it
+#lockDialogGroup {
+  background: #2c001e url(resource:///org/gnome/shell/theme/noise-texture.png);
+  background-repeat: repeat; }
+
+# by it
+#lockDialogGroup {
+  background: #2c001e url(file:///usr/share/backgrounds/Aardvark_Wallpaper_Grey_4096x2304.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center; 
+}
+# Finally save the file and restart your computer to apply changes.
+```
