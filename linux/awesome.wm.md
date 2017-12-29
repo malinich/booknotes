@@ -1,3 +1,4 @@
+> source [here](https://aur.archlinux.org/packages/awesome-git/)
 #### <blockquote>commands
 mod + shift + tag-number: move window to specified tag number.  
 mod + ctrl + shift + tag-number: duplicate window to specified tag number.  
