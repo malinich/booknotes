@@ -5,6 +5,14 @@
 sudo add-apt-repository  ppa:klaus-vormweg/awesome -y
 sudo apt update
 sudo apt install  awesome -y
+
+sudo apt-get install cmake
+apt-get install lua5.2
+apt-get install lua5.2-dev
+
+git clone https://github.com/awesomeWM/awesome.git
+cd awesome
+CMAKE_ARGS="-DCMAKE_INSTALL_PREFIX=/opt/awesome" make
 ```
 #### <blockquote>commands
 mod + shift + tag-number: move window to specified tag number.  
