@@ -1,4 +1,11 @@
 > source [here](https://aur.archlinux.org/packages/awesome-git/)
+
+> install
+```bash
+sudo add-apt-repository  ppa:klaus-vormweg/awesome -y
+sudo apt update
+sudo apt install  awesome -y
+```
 #### <blockquote>commands
 mod + shift + tag-number: move window to specified tag number.  
 mod + ctrl + shift + tag-number: duplicate window to specified tag number.  
