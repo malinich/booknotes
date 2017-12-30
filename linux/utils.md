@@ -1,3 +1,9 @@
+#### <blockquote> windows 10 on usbFlash </blockquote>
+```bash
+sudo add-apt-repository ppa:nilarimogard/webupd8
+sudo apt-get update
+```
+
 #### <blockquote>mount</blockquote>
 ```bash
 # mount from user
