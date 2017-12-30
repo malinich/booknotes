@@ -5,6 +5,13 @@ sudo apt-get update
 sudo apt-get install woeusb
 ```
 
+#### <blockquote> health </blockquote>
+```bash
+sudo add-apt-repository ppa:slgobinath/safeeyes
+sudo apt update
+sudo apt install safeeyes
+```
+
 #### <blockquote>mount</blockquote>
 ```bash
 # mount from user
