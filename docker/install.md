@@ -14,6 +14,9 @@ sudo add-apt-repository \
    $(lsb_release -cs) \
    stable"
 
+sudo apt-get update
+sudo apt-get install docker-ce
+
 # custom
 curl -O https://download.docker.com/linux/ubuntu/dists/zesty/pool/stable/amd64/docker-ce_17.09.0~ce-0~ubuntu_amd64.deb
 sudo dpkg -i docker-ce_17.09.0~ce-0~ubuntu_amd64.deb
