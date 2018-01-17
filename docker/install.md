@@ -21,6 +21,16 @@ sudo apt-get install docker-ce
 curl -O https://download.docker.com/linux/ubuntu/dists/zesty/pool/stable/amd64/docker-ce_17.09.0~ce-0~ubuntu_amd64.deb
 sudo dpkg -i docker-ce_17.09.0~ce-0~ubuntu_amd64.deb
 sudo usermod -a -G docker $USER
+
+# limits
+docker run ....
+ --sysctl net.core.somaxconn=1024 \
+ --ulimit sigpending=62793 \
+ --ulimit nproc=131072 \
+ --ulimit nofile=60000 \
+ --ulimit core=0 \
+
+        
 ```
 
 > compose
