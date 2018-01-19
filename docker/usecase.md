@@ -16,6 +16,8 @@ docker cp ub:/$(echo -e '\007') /tmp/
 docker run -dit -name pp -p 8000:8000 ubuntu /usr/bin/python3.4 -m http.server 8000  
 # удалить все докеры
 docker rm $(docker ps -a -q)  
+# delete all unused images
+docker rmi $(docker images -aq -f 'dangling=true')
 
 docker search python |less 
 docker run --restart=on-failure:5 code.it
