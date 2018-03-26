@@ -19,6 +19,12 @@ ExecStop=/usr/local/bin/docker-compose -f /home/maria/www/docker-compose.yml sto
 WantedBy=default.target
 ```
 
+> run python on container port
+
+```bash
+python manage.py runserver `hostname -I|tr -d '[:space:]'`:8001 
+
+```
 fix froblem with 'Error starting daemon: error initializing graphdriver: driver not supported'  
 need delete --storage-driver aufs
 ```ini
