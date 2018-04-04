@@ -232,7 +232,7 @@ sudo mount /dev/sda5 /media
 <blockquote><sub>run gtk applications in sudo</sub></blockquote>
 
 ```bash
-xhost +SI:localuser:maka
+xhost +SI:localuser:root
 ```
 ####  ip
 
