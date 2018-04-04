@@ -228,8 +228,11 @@ sudo visudo -f /etc/sudoers.d/myOverrides
 User ALL = NOPASSWD:/sbin/mount -t ntfs /dev/sda2 /home/User/mnt/ntfs
 sudo mount /dev/sda5 /media
 
-```
 
+<blockquote><sub>run gtk applications in sudo</sub></blockquote>```
+```bash
+xhost +SI:localuser:maka
+```
 ####  ip
 
 ```bash
