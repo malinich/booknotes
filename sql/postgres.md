@@ -3,6 +3,9 @@
 pg_dump --host localhost --port 5432 --username postgres 
 --format plain --ignore-version --verbose --file "C:\temp\filename.backup" 
 --table public.tablename dbname
+
+# example
+pg_dump --username eicur_zk --no-owner --verbose --file ./petitioner.sql --table petition_petitioner eicur_zk
 ```
 #### load
 ```
