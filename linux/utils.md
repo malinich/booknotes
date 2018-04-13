@@ -330,3 +330,9 @@ xhost +local: && sudo gedit /etc/alternatives/gdm3.css
 }
 # Finally save the file and restart your computer to apply changes.
 ```
+
+#### fonts
+```
+# create ~/.fonts, copy ttf
+sudo fc-cache -fv
+```
