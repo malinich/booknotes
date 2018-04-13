@@ -11,3 +11,14 @@ pg_dump --username eicur_zk --no-owner --verbose --file ./petitioner.sql --table
 ```
 psql -U username -d database -1 -f your_dump.sql
 ```
+
+#### kill all sessions
+```sql
+SELECT 
+    pg_terminate_backend(pid) 
+FROM 
+    pg_stat_activity 
+WHERE 
+    pid <> pg_backend_pid()
+    AND datname = 'eicur_zk';
+```
