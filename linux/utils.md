@@ -1,4 +1,4 @@
-#### > remove exclude files 
+#### <blockquote> remove exclude files  </blockquote>
 ```
 find */*/migrations -type f -name '*.py' -not -name '__init__.py' -print0 |xargs -0 rm -
 ```
