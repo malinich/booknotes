@@ -1,3 +1,8 @@
+#### > remove exclude files 
+```
+find */*/migrations -type f -name '*.py' -not -name '__init__.py' -print0 |xargs -0 rm -
+```
+
 #### <blockquote> windows 10 on usbFlash </blockquote>
 ```bash
 sudo add-apt-repository ppa:nilarimogard/webupd8
