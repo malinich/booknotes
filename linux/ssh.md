@@ -1,3 +1,8 @@
+#### rsync
+```
+rsync -avH --progress -e ssh file root@192.168.xxx.xxx:/home/
+```
+
 ```bash
 # доступ
 ssh -p 7337 root@xx.xxx.xxx.xxx
