@@ -1,5 +1,5 @@
-> vim
-#### tabs
+#### vim
+> tabs
 ```
 set expandtab
 set shiftwidth=2
