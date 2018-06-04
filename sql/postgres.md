@@ -1,5 +1,5 @@
 #### copy tables
-```
+```sql
 // v1
 CREATE TABLE <tablename>_copy (LIKE <tablename> INCLUDING ALL); // copy table with columns
 INSERT INTO <tablename>_copy SELECT * FROM <tablename>;
