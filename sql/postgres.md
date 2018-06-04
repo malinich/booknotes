@@ -1,15 +1,15 @@
 #### copy tables
 ```sql
-// v1
-CREATE TABLE <tablename>_copy (LIKE <tablename> INCLUDING ALL); // copy table with columns
+-- v1
+CREATE TABLE <tablename>_copy (LIKE <tablename> INCLUDING ALL); -- copy table with columns
 INSERT INTO <tablename>_copy SELECT * FROM <tablename>;
 
-// v2
-select * into newtable from oldtable // without index
-select indexdef from pg_indexes where tablename='oldtable';  //copy index
+-- v2
+select * into newtable from oldtable -- without index
+select indexdef from pg_indexes where tablename='oldtable';  --copy index
 
 
-// function for copy
+-- function for copy
 
 CREATE OR REPLACE FUNCTION table_to_file(text)
   RETURNS void AS
