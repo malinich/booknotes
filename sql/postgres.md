@@ -7,6 +7,22 @@ INSERT INTO <tablename>_copy SELECT * FROM <tablename>;
 // v2
 select * into newtable from oldtable // without index
 select indexdef from pg_indexes where tablename='oldtable';  //copy index
+
+
+// function for copy
+
+CREATE OR REPLACE FUNCTION table_to_file(text)
+  RETURNS void AS
+$delimeter$
+BEGIN
+  EXECUTE 'COPY (SELECT * FROM core_address) TO ''' || $1 || '''
+'' ''';
+END;
+$delimeter$
+LANGUAGE plpgsql
+STRICT;
+
+select table_to_file('/tmp/aaa.sql');
 ```
 #### reset pk sequence
 ```
