@@ -1,3 +1,13 @@
+#### copy tables
+```
+// v1
+CREATE TABLE <tablename>_copy (LIKE <tablename> INCLUDING ALL); // copy table with columns
+INSERT INTO <tablename>_copy SELECT * FROM <tablename>;
+
+// v2
+select * into newtable from oldtable // without index
+select indexdef from pg_indexes where tablename='oldtable';  //copy index
+```
 #### reset pk sequence
 ```
 ALTER SEQUENCE <tablename>_<id>_seq RESTART WITH 1
