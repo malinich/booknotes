@@ -23,6 +23,33 @@ LANGUAGE plpgsql
 STRICT;
 
 select table_to_file('/tmp/aaa.sql');
+
+-- full version
+
+CREATE OR REPLACE FUNCTION table_to_file(name text)
+  RETURNS void AS
+$delimeter$
+DECLARE
+  rec RECORD;
+BEGIN
+  FOR rec IN SELECT table_name
+             FROM information_schema.tables
+             WHERE table_schema = 'public' and table_catalog = name
+                   and table_name NOT LIKE '%core_address%'
+                   and table_name NOT LIKE '%msed%'
+                   and table_name NOT LIKE '%goodness%'
+                   and table_name NOT LIKE '%petition%'
+  LOOP
+    EXECUTE 'COPY (SELECT * FROM ' || rec.table_name || ') TO ''' || '/tmp/public/' || rec.table_name || '.sql''';
+  END LOOP;
+END;
+$delimeter$
+LANGUAGE plpgsql
+STRICT;
+
+-- DROP FUNCTION table_to_fil
+select table_to_file('eicur_db');
+
 ```
 #### reset pk sequence
 ```
