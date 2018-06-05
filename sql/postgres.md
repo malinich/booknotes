@@ -14,7 +14,7 @@ BEGIN
   THEN
 	CREATE SERVER postgres
 		FOREIGN DATA WRAPPER postgres_fdw
-		OPTIONS (host '$FOREIGN_HOST', port '5432', dbname 'eicur_zc');
+		OPTIONS (host '$FOREIGN_HOST', port '5432', dbname '$DB_NAME');
 
 	CREATE USER MAPPING FOR $POSTGRES_USER
 		SERVER postgres
