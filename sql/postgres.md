@@ -1,3 +1,32 @@
+#### create forign schema
+```sql
+REATE SCHEMA IF NOT EXISTS person;
+CREATE EXTENSION  IF NOT EXISTS postgres_fdw;
+SET search_path = $POSTGRES_USER,person,public;
+
+DO LANGUAGE plpgsql \$$
+BEGIN
+  IF NOT EXISTS(select
+				srvname
+				from pg_foreign_server
+				where srvname = 'postgres'
+  )
+  THEN
+	CREATE SERVER postgres
+		FOREIGN DATA WRAPPER postgres_fdw
+		OPTIONS (host '$FOREIGN_HOST', port '5432', dbname 'eicur_zc');
+
+	CREATE USER MAPPING FOR $POSTGRES_USER
+		SERVER postgres
+		OPTIONS (user '$POSTGRES_USER', password '$POSTGRES_PASSWORD');
+
+	IMPORT FOREIGN SCHEMA public from server postgres  INTO public ;
+
+	RETURN;
+	END IF ;
+END;
+\$$;
+```
 #### copy tables
 ```sql
 -- v1
