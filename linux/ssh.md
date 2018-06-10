@@ -1,3 +1,11 @@
+#### fingerprint
+```bash
+file=$(mktemp)
+ssh-keyscan host > $file 2> /dev/null
+ssh-keygen -l -f $file
+# check record in host
+sudo ssh-keygen -f ~/.ssh/known_hosts -R 192.168.0.99
+```
 #### rsync
 ```
 rsync -avH --progress -e ssh file root@192.168.xxx.xxx:/home/
