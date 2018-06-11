@@ -252,6 +252,10 @@ irb
 awk 'NR==3 {printf "%.1f%%\\n",($3/70)*100}' /proc/net/wireless
 # nr - это номер строки
 # $3 - это третье слово 0-вся строка 
+
+# filter by colums(100.000kb) and change column
+du /home/user/  -d 1 |awk '{if ($1 > 100000) {print}}'| awk '$1=$1/1024"M"'
+ 
 ```
 
 #### sed
