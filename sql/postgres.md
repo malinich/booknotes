@@ -1,3 +1,23 @@
+#### update one column from table
+```sql
+select table_to_file('/tmp/incident_incident.sql'); -- function see below
+
+CREATE TEMP TABLE tmp AS SELECT * FROM incident_incident;
+COPY tmp(id, petition_source)  from '/tmp/incident_incident.sql';
+
+
+UPDATE incident_incident as ii
+ SET petition_source = t.petition_source
+  from (
+   select
+     incident_incident."id",
+     tmp.petition_source
+   from incident_incident
+     left join tmp on incident_incident.id = tmp.id where tmp.petition_source notnull
+) as t
+where ii.id = t.id;
+
+```
 #### create forign schema
 ```sql
 REATE SCHEMA IF NOT EXISTS person;
