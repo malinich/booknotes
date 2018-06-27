@@ -64,8 +64,7 @@ CREATE OR REPLACE FUNCTION table_to_file(text)
   RETURNS void AS
 $delimeter$
 BEGIN
-  EXECUTE 'COPY (SELECT * FROM core_address) TO ''' || $1 || '''
-'' ''';
+  EXECUTE 'COPY (SELECT id, source_sla FROM incident_incident ) TO ''' || $1 ||'''';
 END;
 $delimeter$
 LANGUAGE plpgsql
