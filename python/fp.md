@@ -179,3 +179,33 @@ def extract_users_roles_wrapper(func):
 
     return wrap
 ```
+
+```python
+class handle_error_attr:
+    """
+    used for chain attributes without catch error
+    for exp. result, error = (handle_error_attr(obj) >> attr1 >> attr2 >> attr3).expand()
+    without it need
+    result = getattr(obj, attr1, None)
+    result = getattr(result, "attr2", None)
+    result = getattr(result, "attr3", None)
+
+    """
+    def __init__(self, obj: Any):
+        self.obj = obj
+        self.error = None
+
+    def __rshift__(self, getattr_name: str):
+        try:
+            val = getattr(self.obj, getattr_name)
+            return self.__class__(val)
+        except Exception as e:
+            self.error = str(e)
+            return self
+
+    def expand(self) -> Tuple[Optional[object], Optional[str]]:
+        return self.obj, self.error
+
+# use
+email, error_email = (handle_error_attr(incident) >> "petition" >> "main_petitioner" >> "email").expand()
+```
