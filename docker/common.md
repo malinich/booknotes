@@ -1,3 +1,7 @@
+```
+docker cp mlg4eicurzk_postgres_1:/backups/backup_2018_07_09T16_33_32.sql.gz .
+```
+
 run as service
 ```ini
 touch /home/maka/www/greenback.service
