@@ -1,3 +1,12 @@
+#### <blockquote> change date  </blockquote>
+```
+# disable date update
+timedatectl set-ntp 0
+# on
+timedatectl set-ntp 1
+# change
+timedatectl set-time "2018-08-16 23:30"
+```
 #### <blockquote> remove exclude files  </blockquote>
 ```
 find */*/migrations -type f -name '*.py' -not -name '__init__.py' -print0 |xargs -0 rm -
