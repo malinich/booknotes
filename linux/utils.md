@@ -1,3 +1,26 @@
+#### <blockquote> set proxy cli  </blockquote>
+```
+gsettings list-recursively org.gnome.system.proxy
+org.gnome.system.proxy autoconfig-url ''
+org.gnome.system.proxy ignore-hosts ['localhost', '127.0.0.0/8']
+org.gnome.system.proxy mode 'none'
+org.gnome.system.proxy use-same-proxy true
+org.gnome.system.proxy.ftp host ''
+org.gnome.system.proxy.ftp port 0
+org.gnome.system.proxy.http authentication-password ''
+org.gnome.system.proxy.http authentication-user ''
+org.gnome.system.proxy.http enabled false
+org.gnome.system.proxy.http host ''
+org.gnome.system.proxy.http port 8080
+org.gnome.system.proxy.http use-authentication false
+org.gnome.system.proxy.https host ''
+org.gnome.system.proxy.https port 0
+org.gnome.system.proxy.socks host ''
+org.gnome.system.proxy.socks port 0
+
+# > link https://developer.gnome.org/ProxyConfiguration/
+```
+
 #### <blockquote> change date  </blockquote>
 ```
 # disable date update
