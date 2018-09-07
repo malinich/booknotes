@@ -1,3 +1,59 @@
+#### iterator
+```sql
+CREATE OR REPLACE FUNCTION random_range(INTEGER, INTEGER)
+  RETURNS INTEGER
+LANGUAGE SQL
+AS $$
+SELECT ($1 + FLOOR(($2 - $1 + 1) * random())) :: INTEGER;
+$$;
+
+
+DO
+$$
+DECLARE
+  possible_chars TEXT := '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  n              INTEGER := 35000; -- int, not bigint!
+  pos            INT4;
+BEGIN
+  while n > 0 loop
+    pos := random_range(1, length(possible_chars));
+    INSERT INTO public.ntfs_ace (is_last,
+                                 effective_from,
+                                 effective_to,
+                                 last_sync,
+                                 change_type,
+                                 event_record_id,
+                                 changed_by,
+                                 subj_id,
+                                 obj,
+                                 login,
+                                 permissions,
+                                 ace_type,
+                                 inheritance,
+                                 source_id,
+                                 subject_type)
+    VALUES (true,
+            '2018-08-15 15:32:10.270000',
+            '2099-12-31 00:00:00.000000',
+            '2018-08-15 15:32:10.270000',
+            2,
+            null,
+            null,
+            'S-1-5-32-544',
+            'soft\Vagrant' || substr(possible_chars, pos, 1),
+            'BUILTIN\Администраторы',
+            2032127,
+            0,
+            19,
+            2,
+            4);
+    n := (n - 1);
+
+    raise notice '%', n;
+  end loop;
+END
+```
+
 #### all permissions
 ```sql
 SELECT grantee
