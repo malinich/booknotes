@@ -1,4 +1,15 @@
+#### random row
+```sql
+SELECT *
+FROM  (
+    SELECT DISTINCT 1 + trunc(random() * 35000)::integer AS id
+    FROM   generate_series(1, 1100) g
+    ) r
+JOIN public.ad_subject  USING (id)
+LIMIT  1;
+```
 #### iterator
+
 ```sql
 CREATE OR REPLACE FUNCTION random_range(INTEGER, INTEGER)
   RETURNS INTEGER
