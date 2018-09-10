@@ -1,3 +1,11 @@
+#### owner db
+```
+SELECT d.datname as "Name",
+    pg_catalog.pg_get_userbyid(d.datdba) as "Owner"
+FROM pg_catalog.pg_database d
+WHERE d.datname = 'your_name'
+ORDER BY 1;
+```
 #### random row
 ```sql
 SELECT *
