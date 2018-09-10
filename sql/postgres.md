@@ -1,3 +1,18 @@
+#### гранты permissions
+```sql
+SELECT grantee
+      ,table_catalog
+      ,table_schema
+      ,table_name
+      ,string_agg(privilege_type, ', ' ORDER BY privilege_type) AS privileges
+FROM information_schema.role_table_grants
+WHERE grantee != 'postgres'
+--  and table_catalog = 'somedatabase' /* uncomment line to filter database */
+--  and table_schema  = 'someschema'   /* uncomment line to filter schema  */
+--  and table_name    = 'sometable'    /* uncomment line to filter table  */
+GROUP BY 1, 2, 3, 4;
+```
+
 #### owner tables
 ```sql
 select
