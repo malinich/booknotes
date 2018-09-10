@@ -1,5 +1,5 @@
 #### owner db
-```
+```sql
 SELECT d.datname as "Name",
     pg_catalog.pg_get_userbyid(d.datdba) as "Owner"
 FROM pg_catalog.pg_database d
