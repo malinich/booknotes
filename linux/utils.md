@@ -1,3 +1,7 @@
+#### tmux
+```bash
+printf '\033]2;%s\033\' "message", # установить имя панели
+```
 #### <blockquote> set proxy cli  </blockquote>
 ```
 gsettings list-recursively org.gnome.system.proxy
