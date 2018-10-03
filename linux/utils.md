@@ -1,3 +1,8 @@
+#### performance
+```bash
+sar -u 10 8 
+ The first value used here, that is 10, displays the number of seconds between sar readings and the second value used here, that is 8, indicates the number of times you want sar to run.
+```
 #### tmux
 ```bash
 printf '\033]2;%s\033\' "message", # установить имя панели
