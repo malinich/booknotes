@@ -1,3 +1,13 @@
+#### user readonly
+```sql
+drop user readonly;
+create user readonly with LOGIN password '2q8qWCZIGH';
+grant CONNECT on DATABASE postgresdevuser TO readonly;
+grant select on all tables in schema public to readonly;
+GRANT USAGE ON SCHEMA public TO readonly;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO readonly;
+```
+
 #### list indexes
 ```sql
 select *
