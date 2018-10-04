@@ -6,6 +6,13 @@ grant CONNECT on DATABASE postgresdevuser TO readonly;
 grant select on all tables in schema public to readonly;
 GRANT USAGE ON SCHEMA public TO readonly;
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO readonly;
+
+CREATE USER MAPPING FOR readonly
+  SERVER postgres
+OPTIONS ( user 'readonly', password 'xxxxxx');
+
+
+grant execute  on function dblink_connect(text, text) to readonly;
 ```
 
 #### list indexes
