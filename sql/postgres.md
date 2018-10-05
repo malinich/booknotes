@@ -1,3 +1,11 @@
+#### auth
+```sql
+select rolname ,rolpassword from pg_authid where
+        rolname='author'; 
+        rolname |             rolpassword              
+        ---------+------------------------------------- 
+         author  | md5d50afb6ec7b2501164b80a0480596ded 
+```
 #### user readonly
 ```sql
 drop user readonly;
