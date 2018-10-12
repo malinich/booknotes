@@ -1,3 +1,40 @@
+#### stats
+```sql
+SELECT l.what, l.nr AS "bytes/ct"
+     , CASE WHEN is_size THEN pg_size_pretty(nr) END AS bytes_pretty
+     , CASE WHEN is_size THEN nr
+      / CASE part WHEN 1 THEN NULLIF(x.ct, 0)
+                  WHEN 2 THEN NULLIF(st.tuple_count, 0)
+                  WHEN 3 THEN NULLIF(st.dead_tuple_count, 0)
+                  WHEN 4 THEN NULLIF(st.tuple_count + st.dead_tuple_count, 0) END
+            END AS bytes_per_row
+FROM  (
+   SELECT min(tableoid)        AS tbl      -- same as 'public.tbl'::regclass::oid
+        , count(*)             AS ct
+        , sum(length(t::text)) AS txt_len  -- length in characters
+   FROM   public.petition_petition t                     -- provide table name *once*
+   ) x
+ , LATERAL pgstattuple(tbl) st             -- also get numbers from pgstattuple
+ , LATERAL (
+   VALUES
+      (1, false, 'row_count'                           , ct)
+    , (1, false, ' ------ DB_obj_size_func -------'    , NULL)
+    , (1, true , 'core_relation_size'                  , pg_relation_size(tbl))
+    , (1, true , 'visibility_map'                      , pg_relation_size(tbl, 'vm'))
+    , (1, true , 'free_space_map'                      , pg_relation_size(tbl, 'fsm'))
+    , (1, true , 'table_size_incl_toast'               , pg_table_size(tbl))
+    , (1, true , 'indexes_size'                        , pg_indexes_size(tbl))
+    , (1, true , 'total_size_incl_toast_and_indexes'   , pg_total_relation_size(tbl))
+    , (1, true , 'live_rows_in_text_representation'    , txt_len)
+    , (2, false, ' ------ pgstattuple ------------'    , NULL)
+    , (2, false, 'live_tuples'                         , st.tuple_count)
+    , (2, false, 'dead_tuples'                         , st.dead_tuple_count)
+    , (2, true , 'total table / live tuples'           , st.table_len)
+    , (2, true , 'live table / live tuples'            , st.tuple_len)
+    , (3, true , 'dead table / dead tuples'            , st.dead_tuple_len)
+    , (4, true , 'total table / all tuples'            , st.table_len)
+   ) l(part, is_size, what, nr);
+```
 #### auth
 ```sql
 select rolname ,rolpassword from pg_authid where
