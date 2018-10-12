@@ -7,6 +7,10 @@ SHOW bgwriter_lru_maxpages;
 SHOW bgwriter_lru_multiplier;
 show bgwriter_delay;
 show log_min_duration_statement;
+
+alter system set shared_buffers to '512MB';
+SELECT pg_reload_conf();
+
 ```
 #### vacuum
 ```sql
@@ -17,6 +21,11 @@ SELECT
   autovacuum_count,
   autoanalyze_count
 FROM pg_stat_user_tables;
+```
+#### buffer
+```sql
+SELECT count(*) from pg_buffercache where relfilenode :: regclass :: text = 'petition_petition';
+
 ```
 #### index
 ```sql
@@ -32,6 +41,8 @@ SELECT *
 FROM pg_stat_user_indexes psui, pg_statio_user_indexes psiui
 WHERE psui.relid = psiui.relid AND
       psui.indexrelid = psiui.indexrelid;
+
+
       
 -- info index
 create extension pgstattuple;
@@ -59,6 +70,37 @@ SELECT * FROM pg_stat_bgwriter;
 ```
 #### stats
 ```sql
+-- user sessions
+SHOW track_activities;
+SELECT
+  datname,
+  usename,
+  application_name,
+  now() - backend_start AS "Session duration",
+  pid
+FROM
+  pg_stat_activity
+WHERE
+  state = 'active';
+
+
+SELECT
+  datname,
+  usename,
+  application_name,
+  now() - backend_start AS "Session duration",
+  pid,
+  query
+FROM
+  pg_stat_activity;
+  
+-- cache disk usage
+SELECT
+  heap_blks_read,
+  heap_blks_hit,
+  *
+FROM pg_statio_user_tables;
+
 -- reset stats
 select pg_stat_reset();
 
