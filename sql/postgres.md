@@ -1,5 +1,89 @@
+#### config
+```sql
+SHOW block_size;
+show shared_buffers;
+show max_wal_size;
+SHOW bgwriter_lru_maxpages;
+SHOW bgwriter_lru_multiplier;
+show bgwriter_delay;
+show log_min_duration_statement;
+```
+#### vacuum
+```sql
+SELECT
+  relname,
+  last_autovacuum,
+  last_autoanalyze,
+  autovacuum_count,
+  autoanalyze_count
+FROM pg_stat_user_tables;
+```
+#### index
+```sql
+-- compare index vs scan
+SELECT
+  relname,
+  seq_scan - idx_scan delta
+FROM pg_stat_user_tables
+WHERE seq_scan - idx_scan > 0;
+
+-- table and inxesex
+SELECT *
+FROM pg_stat_user_indexes psui, pg_statio_user_indexes psiui
+WHERE psui.relid = psiui.relid AND
+      psui.indexrelid = psiui.indexrelid;
+      
+-- info index
+create extension pgstattuple;
+SELECT * FROM pgstatindex('goodness_goodnesspetition_petition_id_a5bc49db');
+
+--unused index
+SELECT
+  indrelid :: regclass tab_name,
+  pi.indexrelid :: regclass unused_index
+FROM
+  pg_index pi, pg_stat_user_indexes psui
+WHERE pi.indexrelid = psui.indexrelid AND NOT indisunique AND idx_scan = 0;
+
+SELECT
+  relname,
+  seq_scan,
+  seq_tup_read,
+  idx_scan,
+  idx_tup_fetch
+FROM pg_stat_user_tables;
+```
+#### bg_writter
+```sql
+SELECT * FROM pg_stat_bgwriter;
+```
 #### stats
 ```sql
+-- reset stats
+select pg_stat_reset();
+
+-- most values
+SELECT * FROM pg_stats where tablename like '%petition';
+
+-- insert, update info
+SELECT
+  relname,
+  n_tup_ins "Total Inserts",
+  n_tup_upd "Total Updates",
+  n_tup_del "Total deletes"
+FROM pg_stat_user_tables;
+
+SELECT
+  relname,
+  n_mod_since_analyze
+FROM pg_stat_user_tables;
+
+-- table size
+SELECT pg_size_pretty(pg_total_relation_size('petition_petition'));
+
+```
+```sql
+--info about table
 SELECT l.what, l.nr AS "bytes/ct"
      , CASE WHEN is_size THEN pg_size_pretty(nr) END AS bytes_pretty
      , CASE WHEN is_size THEN nr
