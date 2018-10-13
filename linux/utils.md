@@ -1,3 +1,8 @@
+#### chinease linux
+```bash
+sudo locale-gen zh_TW.UTF-8
+sudo apt-get install ibus-chewing
+```
 #### performance
 ```bash
 sar -u 10 8 
