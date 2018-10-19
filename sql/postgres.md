@@ -70,6 +70,9 @@ SELECT * FROM pg_stat_bgwriter;
 ```
 #### stats
 ```sql
+-- see realpages
+select * from pg_class where relname='petition_petition';
+
 -- user sessions
 SHOW track_activities;
 SELECT
