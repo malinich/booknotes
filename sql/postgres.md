@@ -26,6 +26,32 @@ FROM pg_stat_user_tables;
 ```sql
 SELECT count(*) from pg_buffercache where relfilenode :: regclass :: text = 'petition_petition';
 
+create view pg_buffercache_v as
+  select
+    bufferid,
+    (select c.relname
+     from pg_class c
+     where pg_relation_filenode(c.oid) = b.relfilenode
+    )   relname,
+    case relforknumber
+    when 0
+      then 'main'
+    when 1
+      then 'fsm'
+    when 2
+      then 'vm'
+    end relfork,
+    relblocknumber,
+    isdirty,
+    usagecount
+  from pg_buffercache b
+  where b.reldatabase in (0, (select oid
+                              from pg_database
+                              where datname = current_database()))
+        and b.usagecount is not null;
+
+select count(*) from pg_buffercache_v where relname ='petition_petition'
+
 ```
 #### index
 ```sql
