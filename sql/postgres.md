@@ -99,6 +99,8 @@ FROM pg_stat_user_tables;
 ```
 #### bg_writter
 ```sql
+select pg_stat_reset_shared('bgwriter');
+ 
 SELECT * FROM pg_stat_bgwriter;
 select buffers_clean, maxwritten_clean, buffers_backend from pg_stat_bgwriter;
 -- if buffers_backend > 0 then bg_writter not have time to execute;
@@ -113,6 +115,9 @@ select buffers_clean, maxwritten_clean, buffers_backend from pg_stat_bgwriter;
 -- see realpages
 select * from pg_class where relname='petition_petition';
 
+-- reset stats
+select pg_stat_reset_shared('bgwriter');
+ 
 -- user sessions
 SHOW track_activities;
 SELECT
