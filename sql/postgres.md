@@ -100,6 +100,8 @@ FROM pg_stat_user_tables;
 #### bg_writter
 ```sql
 SELECT * FROM pg_stat_bgwriter;
+select buffers_clean, maxwritten_clean, buffers_backend from pg_stat_bgwriter;
+-- if buffers_backend > 0 then bg_writter not have time to execute;
 ```
 #### stats
 ```sql
