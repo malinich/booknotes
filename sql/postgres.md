@@ -52,6 +52,13 @@ create view pg_buffercache_v as
 
 select count(*) from pg_buffercache_v where relname ='petition_petition'
 
+-- usage
+select
+  usagecount,
+  count(*)
+from pg_buffercache
+group by usagecount
+order by usagecount;
 ```
 #### index
 ```sql
