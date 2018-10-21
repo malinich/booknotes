@@ -102,6 +102,11 @@ FROM pg_stat_user_tables;
 SELECT * FROM pg_stat_bgwriter;
 select buffers_clean, maxwritten_clean, buffers_backend from pg_stat_bgwriter;
 -- if buffers_backend > 0 then bg_writter not have time to execute;
+
+* buffers_clean    - количество буферов, записанных на диск процессом writer,
+* maxwritten_clean - количество остановок по достижению bgwriter_lru_maxpages,
+* buffers_backend  - количество буферов, записанных серверными процессами.
+
 ```
 #### stats
 ```sql
