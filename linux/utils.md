@@ -1,3 +1,10 @@
+#### restore root pass
+```bash
+# reboot in recovery mode
+# choose root
+passwd jorge
+mount -o remount,rw /
+```
 #### chinease linux
 ```bash
 sudo locale-gen zh_TW.UTF-8
