@@ -1,3 +1,16 @@
+#### turn off usb protect
+```bash
+sudo umount /dev/sdb1
+sudo hdparm -r0 /dev/sdb
+#Create a new mount point and mount it there (my userID from /etc/passwd is 1000)
+
+sudo mkdir /media/andrew/temp
+sudo mount -o uid=1000 /dev/sdb1 /media/andrew/temp
+
+# it'll still complain that it's read-only.
+sudo hdparm -r0 /dev/sdb1
+sudo mount -o remount,rw /dev/sdb1
+```
 #### restore root pass
 ```bash
 # reboot in recovery mode
