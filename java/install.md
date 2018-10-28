@@ -1,3 +1,10 @@
+#### install java ver 1
+```bash
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt update; sudo apt install oracle-java8-installer
+sudo apt install oracle-java8-set-default
+# For Java 9, install the package oracle-java9-set-default instead.
+```
 ```bash
 # strange validate and debug
 readelf -l /usr/bin/java
