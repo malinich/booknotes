@@ -1,6 +1,6 @@
 #### flash
 ```bash
-sudo apt-get install flashplugin-installer
+sudo apt-get install ubuntu-restricted-extras
 sudo apt install browser-plugin-freshplayer-pepperflash
 ```
 
