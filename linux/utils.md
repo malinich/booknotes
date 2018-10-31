@@ -1,3 +1,9 @@
+#### flash
+```bash
+sudo apt-get install flashplugin-installer
+sudo apt install browser-plugin-freshplayer-pepperflash
+```
+
 #### turn off usb protect
 ```bash
 sudo umount /dev/sdb1
