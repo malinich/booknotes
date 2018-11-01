@@ -396,6 +396,16 @@ UPDATE incident_incident as ii
 where ii.id = t.id;
 
 ```
+#### FDW
+```sql
+select
+  um.*,
+  rolname
+from pg_user_mapping um
+  join pg_roles r on r.oid = umuser
+  join pg_foreign_server fs on fs.oid = umserver;
+  
+```
 #### create forign schema
 ```sql
 REATE SCHEMA IF NOT EXISTS person;
