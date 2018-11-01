@@ -398,6 +398,7 @@ where ii.id = t.id;
 ```
 #### FDW
 ```sql
+-- ser mapping
 select
   um.*,
   rolname
@@ -405,6 +406,15 @@ from pg_user_mapping um
   join pg_roles r on r.oid = umuser
   join pg_foreign_server fs on fs.oid = umserver;
   
+-- list servers
+select 
+    srvname as name, 
+    srvowner::regrole as owner, 
+    fdwname as wrapper, 
+    srvoptions as options
+from pg_foreign_server
+join pg_foreign_data_wrapper w on w.oid = srvfdw;
+
 ```
 #### create forign schema
 ```sql
