@@ -15,6 +15,7 @@ SELECT
   );
 
 systemctl restart postgresqk.service
+Искать логи надо в /var/lib/pgsql/9.6/data/pg_log/
 ```
 #### config
 ```sql
