@@ -1,3 +1,21 @@
+#### loging
+```
+# in file /etc/postgresql/9.6/main/postgresql.conf
+
+#log_directory = 'pg_log' to log_directory = 'pg_log'
+#log_filename = 'postgresql-%Y-%m-%d_%H%M%S.log' to log_filename = 'postgresql-%Y-%m-%d_%H%M%S.log'
+#log_statement = 'none' to log_statement = 'all'
+#logging_collector = off to logging_collector = on
+
+SELECT
+  set_config(
+    'log_statement',
+    'all',
+    true
+  );
+
+systemctl restart postgresqk.service
+```
 #### config
 ```sql
 SHOW block_size;
