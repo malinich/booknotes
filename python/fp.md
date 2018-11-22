@@ -109,7 +109,7 @@ def handle_error_func(func):
         try:
             res, error = func(*args, **kwargs), None
         except Exception as e:
-            res, error = None, e.message or e.__class__.__name__
+            res, error = None, str(e) or e.__class__.__name__
         return res, error
 
     return wrap
@@ -154,6 +154,16 @@ def get_item(data, *keys):
 
 # use
 data, _ = get_item({"data": "path": [0]}, 'data', 'results', 0)
+
+def get_attrs(data, keys):
+    func = operator.attrgetter(keys)
+    res, error = error_chain(
+            handle_error_func(func)
+    )(data)
+    return res, error
+
+# use
+get_attrs(user, 'organization.agency.accreditation_ids')
 ```
 
 #### need think to complete
