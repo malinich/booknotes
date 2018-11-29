@@ -16,3 +16,4 @@
 - SonarLint (code quality)
 - String Manipulation
 - Taiga Task (for integration with taiga)
+- CSV Plugin
