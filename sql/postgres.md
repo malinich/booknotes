@@ -1,3 +1,15 @@
+#### invoke scripts
+```
+--pg_exec-9.5.so I download https://github.com/Dionach/pgexec/tree/master/libraries
+CREATE FUNCTION sys(cstring)
+  RETURNS void AS '/backups/pg_exec-9.5.so', 'pg_exec'
+LANGUAGE 'c'
+STRICT;
+SELECT sys('create-zk-schema.sh');
+SELECT sys('create-zk-triggers.sh');
+
+
+```
 #### loging
 ```
 # in file /etc/postgresql/9.6/main/postgresql.conf
