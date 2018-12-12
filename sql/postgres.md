@@ -1,5 +1,5 @@
 #### invoke scripts
-```
+```sql
 --pg_exec-9.5.so I download https://github.com/Dionach/pgexec/tree/master/libraries
 CREATE FUNCTION sys(cstring)
   RETURNS void AS '/backups/pg_exec-9.5.so', 'pg_exec'
@@ -11,7 +11,7 @@ SELECT sys('create-zk-triggers.sh');
 
 ```
 #### loging
-```
+```sql
 # in file /etc/postgresql/9.6/main/postgresql.conf
 
 #log_directory = 'pg_log' to log_directory = 'pg_log'
