@@ -4,7 +4,7 @@
 
 #### I put here because no want create only for it specific folder
 > jetbrains plugin:
-- material theme https://www.material-theme.com/
+- Material  Theme UI  https://www.material-theme.com/
 - .env file support
 - .ignore
 - Code Glance  (right penel for scroll like sublime)
@@ -17,3 +17,9 @@
 - String Manipulation
 - Taiga Task (for integration with taiga)
 - CSV Plugin
+- Rust
+- BashSupport
+- Makefile Support
+- nginx support
+- NPM script Runner
+- Vue.js
