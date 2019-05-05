@@ -4,6 +4,12 @@ sudo apt-get install ubuntu-restricted-extras
 sudo apt install browser-plugin-freshplayer-pepperflash
 ```
 
+#### convert image png to jpg
+```bash
+$ ls -1 *.png | xargs -n 1 bash -c 'convert "$0" "${0%.png}.jpg"'
+
+```
+
 #### turn off usb protect
 ```bash
 sudo umount /dev/sdb1
