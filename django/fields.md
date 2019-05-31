@@ -1,3 +1,48 @@
+#### m2m DRF save
+```python
+class Question(models.Model):
+    content = models.TextField()
+    answers = models.ManyToManyField(Answer, through='QuestionAnswer')
+
+class Answer(models.Model):
+    content = models.TextField()
+
+
+class QuestionAnswer(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
+    is_correct = models.BooleanField()
+
+# serializer
+
+class QuestionSerializer(serializers.ModelSerializer):
+    answers = QuestionAnswerSerializer(many=True, source='questionanswer_set')
+
+    class Meta:
+        model = Question
+        fields = "__all__"
+
+    def create(self, validated_data):
+        q_data = validated_data.pop('questionanswer_set')
+        instance = Question.objects.create(**validated_data)
+        for question in q_data:
+            d = dict(question)
+            QuestionAnswer.objects.create(question=instance, answer_id=d['answer_id'], is_correct=d['is_correct'])
+        return instance
+
+    def update(self, instance, validated_data):
+        q_data = validated_data.pop('questionanswer_set')
+        for item in validated_data:
+            if Question._meta.get_field(item):
+                setattr(instance, item, validated_data[item])
+        QuestionAnswer.objects.filter(question=instance).delete()
+        for question in q_data:
+            d = dict(question)
+            QuestionAnswer.objects.create(question=instance, answer_id=d['answer_id'], is_correct=d['is_correct'])
+        instance.save()
+        return instance
+```
+
 #### create own field
 ``` python
 class BetterCharField(models.Field):
