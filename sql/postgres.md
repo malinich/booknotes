@@ -1,3 +1,10 @@
+#### user for django
+```sql
+ create user user_name with password 'password';
+    alter role user_name set client_encoding to 'utf8';
+    alter role user_name set default_transaction_isolation to 'read committed';
+    alter role user_name set timezone to 'UTC';
+```
 #### invoke scripts
 ```sql
 --pg_exec-9.5.so I download https://github.com/Dionach/pgexec/tree/master/libraries
