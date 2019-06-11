@@ -1,3 +1,8 @@
+#### save credentials
+```
+git config credential.helper store
+git pull
+```
 #### <blockquote> install
 ```
 apt-get install git
