@@ -1,3 +1,9 @@
+#### parse env file and set them
+```
+export $(grep -v '^#' ./envs/.env.base | xargs)
+export $(grep -v '^#' ./envs/.env.closed | xargs)
+```
+
 #### update application
 ```bash
 # Install
