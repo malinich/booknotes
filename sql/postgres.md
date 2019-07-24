@@ -1,3 +1,10 @@
+#### найти и отключить триггер
+```sql
+select * from pg_trigger,pg_proc where pg_proc.oid=pg_trigger.tgfoid
+and tgname = 'incident_change_event';
+
+ ALTER TABLE incident_incident DISABLE TRIGGER "incident_change_event";
+```
 #### user for django
 ```sql
  create user user_name with password 'password';
