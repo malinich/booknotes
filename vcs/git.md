@@ -1,3 +1,11 @@
+#### configs
+```
+# ignore files mod
+git config core.filemode false
+
+# end of file 
+git config --global core.autocrlf true
+```
 #### save credentials
 ```
 git config credential.helper store
