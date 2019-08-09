@@ -1,3 +1,14 @@
+#### Проблема с UTC
+```sql
+select * from pg_timezone_names where name like 'UTC';
+
+mv /etc/localtime /etc/localtime.backup
+
+rm -rf /etc/localtime
+cat /usr/share/zoneinfo/UTC > /etc/localtime
+# ln -s /usr/share/zoneinfo/UTC /etc/localtime
+
+```
 #### найти и отключить триггер
 ```sql
 select * from pg_trigger,pg_proc where pg_proc.oid=pg_trigger.tgfoid
