@@ -4,3 +4,13 @@ echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | 
 sudo apt-get update
 sudo apt-get install mongodb-10gen
 ```
+
+удалить коллекции по патерну
+```
+regExp = /test/;
+db.getCollectionNames().filter(function(name){
+  return name.match(regExp)
+}).forEach(function(name){
+  db.getCollection(name).drop()
+});
+```
