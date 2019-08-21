@@ -1,21 +1,18 @@
 #### set latency for network
 ```
-You can slow the speed of localhost (network) by adding delay.
-Use ifconfig command to see network device: on localhost it may be lo and on LAN its eth0.
+# You can slow the speed of localhost (network) by adding delay.
+# Use ifconfig command to see network device: on localhost it may be lo and on LAN its eth0.
 
-to add delay use this command (adding 1000ms delay on lo network device)
-
+# to add delay use this command (adding 1000ms delay on lo network device)
 tc qdisc add dev lo root netem delay 1000ms
 
-to change delay use this one
-
+# to change delay use this one
 tc qdisc change dev lo root netem delay 1ms
 
-to see current delay
-
+# to see current delay
 tc qdisc show dev lo
 
-and to remove delay
+# and to remove delay
 
 tc qdisc del dev lo root netem delay 1000ms
 
