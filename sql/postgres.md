@@ -1,3 +1,10 @@
+#### logging
+```
+postgresq.conf
+log_line_prefix = '[%p] [%c] [%m] [%x]: '
+log_statement = 'all'
+
+```
 #### Проблема с UTC
 ```sql
 select * from pg_timezone_names where name like 'UTC';
