@@ -1,3 +1,8 @@
+#### copy csv
+```
+Copy (Select * From foo) To '/tmp/test.csv' With CSV DELIMITER ',';
+```
+
 #### logging
 ```
 postgresq.conf
