@@ -1,3 +1,8 @@
+#### clear log
+```
+echo "" > $(docker inspect --format='{{.LogPath}}' 0a014706d6c7)  # container-id
+```
+
 #### configs
 ```
 # ignore files mod
