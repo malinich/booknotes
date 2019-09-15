@@ -1,3 +1,16 @@
+#### convert ts to mp
+```
+ffmpeg -i in1.ts -c:v libx264 -c:a copy output0.mp4
+ffmpeg -i in2.ts -c:v libx264 -c:a copy output1.mp4
+
+# concat
+cat mylist.txt
+file 'output0.mp4'
+file 'output1.mp4'
+
+ffmpeg -f concat -i mylist.txt -c copy output.mp4
+
+```
 ```bash
 
 ffmpeg -f video4linux2 -i /dev/video0 -an -f flv rtmp://localhost/tra/tru
