@@ -1,3 +1,10 @@
+#### pyflame
+```
+http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html
+
+sudo pyflame -s 60 -p 185139  | perl flamegraph.pl > test_bef.svg
+
+```
 
 ```python
 # debug channels
