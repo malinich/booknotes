@@ -1,3 +1,7 @@
+##### get names
+```
+docker inspect --format='{{.Name}}' $(sudo docker ps -aq --no-trunc)
+```
 ##### clear log
 ```
 echo "" > $(docker inspect --format='{{.LogPath}}' 0a014706d6c7)  # container-id
