@@ -17,7 +17,7 @@ sudo add-apt-repository \
    stable"
 
 sudo apt-get update
-sudo apt-get install docker-ce
+sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 # custom
 curl -O https://download.docker.com/linux/ubuntu/dists/zesty/pool/stable/amd64/docker-ce_17.09.0~ce-0~ubuntu_amd64.deb
