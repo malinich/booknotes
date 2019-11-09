@@ -9,5 +9,7 @@
 ```
 # istall spring project, after
 mvn -N io.takari:maven:wrapper
-./mvnw kotlin:compile
+
+mvnw kotlin:compile
+mvnw spring-boot:run
 ```
