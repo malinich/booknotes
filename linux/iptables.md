@@ -71,6 +71,13 @@ iptables -X
 iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 192.168.12.77:80
 iptables -t nat -A POSTROUTING -p tcp -d 192.168.12.77 --dport 80 -j SNAT --to-source 192.168.12.87
 ```
+```
+# redirect from 192.168.255.1:9092 ->  172.17.0.1:5281
+iptables -t nat -A PREROUTING -p tcp --dport 9092 -j DNAT --to-destination 172.17.0.1:5281
+iptables -t nat -A POSTROUTING -p tcp -d 172.17.0.1 --dport 5281 -j SNAT --to-source 192.168.255.1
+
+
+ ```
 #### <blockquote><sub>may be this is right</sub></blockquote>
 ```bash
 # Маршрутизация и перенаправление, раздача инета
