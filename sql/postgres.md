@@ -1,3 +1,32 @@
+#### timeseries
+```sql
+SELECT                                                                                                                                                                  
+            T.dt ::TIMESTAMP AT TIME ZONE '+3' as date                                                                                                                          
+            , CASE                                                                                                                                                              
+                WHEN T2.cn IS NULL                                                                                                                                              
+                THEN 0                                                                                                                                                          
+                ELSE T2.cn                                                                                                                                                      
+             END as read                                                                                                                                                        
+        FROM generate_series(                                                                                                                                                   
+                 date_trunc('{aggregation}',('{date_from} 00:00:00+03'::TIMESTAMPTZ))                                                                                           
+                 ,date_trunc('{aggregation}',('{date_to} 00:00:00+03'::TIMESTAMPTZ))                                                                                            
+                 ,INTERVAL '1 {aggregation}'                                                                                                                                    
+        ) AS T (dt)                                                                                                                                                             
+        LEFT JOIN (                                                                                                                                                             
+            SELECT                                                                                                                                                              
+                date_trunc('{aggregation}',(sample.read_date)::TIMESTAMP AT TIME ZONE '+03') as dt                                                                              
+                , count(read_date) as cn                                                                                                                                        
+            FROM sample                                                                                                                                                         
+            WHERE                                                                                                                                                               
+                sampleTT.campaign_id={campaign}                                                                                                                                   
+                and sampleTT.read_date between '{date_from} 00:00:00+03'  and '{date_to} 00:00:00+03'                                                                             
+            GROUP BY                                                             
+                date_trunc('{aggregation}',(sampleTT.read_date)::TIMESTAMP AT TIME ZONE '+03')
+        ) T2 ON T2.dt=T.dt         
+        ORDER BY date
+# aggregation = "hour"
+
+```
 #### copy csv
 ```
 Copy (Select * From foo) To '/tmp/test.csv' With CSV DELIMITER ',';
