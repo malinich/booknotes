@@ -1,3 +1,14 @@
+#### pgp seahorse
+```
+# seahorse is installed, create by him pgp key
+# for export use cli
+# list contacts
+pgp -k 
+gpg --armor --output my-prv.pgp --export-secret-key 'MYNAME'
+gpg --armor --output my-pub.pgp --export 'MYNAME'
+```
+
+
 first need install gpg2, gnugpg2  
 install keyserver FREE PGP KEY SERVER  
 
