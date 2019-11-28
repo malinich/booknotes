@@ -1,4 +1,4 @@
-```
+```python
  f = open("56ad62-json.log", encoding="utf-8")
  qq=f.readline() 
 
