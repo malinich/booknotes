@@ -7,3 +7,8 @@ conda update -n base -c defaults conda
 ```
 conda create --name imagetagger
 ```
+
+#### activate env
+```
+conda activate imagetagger
+```
