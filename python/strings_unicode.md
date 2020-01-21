@@ -9,3 +9,10 @@
 # '{"log":"message": "Авторизация пользователя"}\n'
 
 ```
+```python
+op = open("/home/maka/20_01_20.txt")
+op1= open("/home/maka/20_01_20_q.txt", "w")                                     
+for r in op: 
+    op1.write(r.encode().decode("unicode-escape")) 
+
+```
