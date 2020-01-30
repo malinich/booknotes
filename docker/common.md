@@ -1,3 +1,17 @@
+##### change storage folder for docker
+```
+Let's get started by modifying systemd's docker start up script. Open file /lib/systemd/system/docker.service with your favorite text editor and replace the following line where /new/path/docker is a location of your new chosen docker directory:
+
+FROM:
+ExecStart=/usr/bin/docker daemon -H fd://
+TO:
+ExecStart=/usr/bin/docker daemon -g /new/path/docker -H fd://
+
+When ready stop docker service:
+
+# systemctl stop docker
+
+```
 ##### get names
 ```
 docker inspect --format='{{.Name}}' $(sudo docker ps -aq --no-trunc)
