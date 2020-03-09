@@ -1,3 +1,11 @@
+> prepare
+```bash
+sudo apt install compton compton-conf
+sudo add-apt-repository ppa:slgobinath/safeeyes
+sudo apt update
+sudo apt install safeeyes
+```
+
 > source [here](https://aur.archlinux.org/packages/awesome-git/)
 
 > install
