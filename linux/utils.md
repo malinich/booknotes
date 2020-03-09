@@ -286,7 +286,40 @@ sudo update-grub
 
 # смена оконного менеджера
 sudo update-alternatives --config x-display-manager
+
+# Настройка разрешения в xorg.conf (выставить разрешения кастомное)
+# получить модлайн + install brightness
+> xrandr --output $(xrandr|head -n2|tail -n1|cut -d\  -f 1) --scale 0.5x0.5 # for scale
+> xrandr --output eDP1 --mode 1920x1080 # set cutom mode
+> xrandr -s 1920x1080  # set custom mode
+> cvt 1920 1080 60 # take modeline
+# save config
+
+Section "Monitor"                                                                                                                                                                            
+    Identifier      "External DVI"
+    Modeline        "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+    Option          "PreferredMode" "1920x1080_60.00"
+EndSection
+
+Section "Device"
+    Identifier  "Card0"
+    Driver      "intel"
+    Option      "Backlight"  "External DVI"
+EndSection
+
+Section "Screen"
+    Identifier "Screen 0"
+    Device     "Card0"
+    Monitor    "External DVI"
+    DefaultDepth  24
+    SubSection "Display"
+        Modes "1920x1080_60.00" "1920x1080"
+    EndSubSection
+EndSection
+~
+
 ```
+
 
 #### <blockquote>find</blockquote> 
 ```bash
