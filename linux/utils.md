@@ -293,6 +293,11 @@ sudo update-alternatives --config x-display-manager
 > xrandr --output eDP1 --mode 1920x1080 # set cutom mode
 > xrandr -s 1920x1080  # set custom mode
 > cvt 1920 1080 60 # take modeline
+# take brightness info
+> sudo find /sys/ -type f -iname '*brightness*'
+> ls /sys/devices/pci0000:00/0000:00:02.0/drm/card0/card0-LVDS-1/intel_backlight/brightness
+> # intel
+
 # save config
 
 Section "Monitor"                                                                                                                                                                            
