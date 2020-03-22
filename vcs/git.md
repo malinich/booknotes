@@ -1,3 +1,8 @@
+#### add keys in session
+```
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/github
+```
 #### clear log
 ```
 echo "" > $(docker inspect --format='{{.LogPath}}' 0a014706d6c7)  # container-id
