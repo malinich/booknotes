@@ -1,3 +1,8 @@
+#### timer ####
+```
+echo 'pmi action hibernate' | at now + 30 min
+echo pm-suspend | sudo at 11pm
+```
 #### zram
 ```bash
 modprobe zram num_devices=4
