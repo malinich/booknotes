@@ -1,3 +1,9 @@
+#### jpg to pdf
+```
+# change size image
+mogrify -verbose -resize '40%' *.JPG
+
+```
 #### timer ####
 ```
 echo 'pmi action hibernate' | at now + 30 min
