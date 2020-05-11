@@ -2,7 +2,7 @@
 ```
 # change size image
 mogrify -verbose -resize '40%' *.JPG
-
+img2pdf *.jp* --output combined.pd
 ```
 #### timer ####
 ```
