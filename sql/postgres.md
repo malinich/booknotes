@@ -612,7 +612,11 @@ pg_dump --username eicur_zk --no-owner --verbose --file ./petitioner.sql --table
 ```
 psql -U username -d database -1 -f your_dump.sql
 ```
-
+#### example load/dump
+```sh
+pg_dump -Fc  --username=postgres --host=xx.xx.xx.xx --port=5432  --column-inserts -O -x blogs > ~/my.dump
+pg_restore -U blogs -d blogs -h intranet-blogs -p 55432  -O -x ~/my.dump
+```
 #### kill all sessions
 ```sql
 SELECT 
