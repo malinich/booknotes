@@ -1,10 +1,12 @@
 #### timeseries
 ```sql
 -- hang transactions
-select * 
+select *
 from pg_stat_activity
 where (state = 'idle in transaction')
     and xact_start is not null;
+
+SELECT pg_terminate_backend(pid)
 ```
 ```sql
 SELECT                                                                                                                                                                  
