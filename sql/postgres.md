@@ -1,5 +1,12 @@
 #### timeseries
 ```sql
+-- hang transactions
+select * 
+from pg_stat_activity
+where (state = 'idle in transaction')
+    and xact_start is not null;
+```
+```sql
 SELECT                                                                                                                                                                  
             T.dt ::TIMESTAMP AT TIME ZONE '+3' as date                                                                                                                          
             , CASE                                                                                                                                                              
