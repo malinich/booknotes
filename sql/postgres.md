@@ -9,6 +9,16 @@ where (state = 'idle in transaction')
 SELECT pg_terminate_backend(pid)
 ```
 ```sql
+hanging queries
+SELECT pid,
+       now() - pg_stat_activity.query_start AS duration,
+       query,
+       state
+FROM pg_stat_activity
+WHERE (now() - pg_stat_activity.query_start) > interval '5 minutes';
+
+```
+```sql
 SELECT                                                                                                                                                                  
             T.dt ::TIMESTAMP AT TIME ZONE '+3' as date                                                                                                                          
             , CASE                                                                                                                                                              
