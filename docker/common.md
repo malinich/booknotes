@@ -3,13 +3,19 @@
 Let's get started by modifying systemd's docker start up script. Open file /lib/systemd/system/docker.service with your favorite text editor and replace the following line where /new/path/docker is a location of your new chosen docker directory:
 
 FROM:
-ExecStart=/usr/bin/docker daemon -H fd://
+ExecStart=/usr/bin/docker -H fd://
 TO:
-ExecStart=/usr/bin/docker daemon -g /new/path/docker -H fd://
+ExecStart=/usr/bin/docker -g /new/path/docker -H fd://
 
 When ready stop docker service:
 
-# systemctl stop docker
+sudo rsync -aqxP /var/lib/docker/ /new/path/docker
+
+sudo systemctl stop docker
+sudo systemctl daemon-reload
+sudo systemctl start docker
+sudo ps aux | grep -i docker | grep -v grep
+
 
 ```
 ##### get names
