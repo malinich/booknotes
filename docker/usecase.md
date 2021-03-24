@@ -89,3 +89,8 @@ docker run -it --link some-redis:redis --rm redis sh -c 'exec redis-cli -h "$RED
 
 
 ```
+
+postgresql
+```
+docker run -dit --name docker_postgres -e POSTGRES_HOST_AUTH_METHOD=trust -e POSTGRES_PASSWORD=password -e POSTGRES_USER=intranet -p 55435:5432 postgres:12.2
+```
