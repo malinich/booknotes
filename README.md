@@ -23,3 +23,4 @@
 - nginx support  (not use)
 - NPM script Runner  (not use)
 - Vue.js  (not use)
+- Redis
