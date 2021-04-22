@@ -13,13 +13,13 @@
 - Grep Console (color console)
 - HighlightBracketPair (color brakets)
 - Rainbow brackets (the same, use together)
-- SonarLint (code quality)
+- SonarLint (code quality) (not use)
 - String Manipulation
-- Taiga Task (for integration with taiga)
+- Taiga Task (for integration with taiga) (not use)
 - CSV Plugin
-- Rust
-- BashSupport
-- Makefile Support
-- nginx support
-- NPM script Runner
-- Vue.js
+- Rust  (not use)
+- BashSupport  (not use)
+- Makefile Support  (not use)
+- nginx support  (not use)
+- NPM script Runner  (not use)
+- Vue.js  (not use)
