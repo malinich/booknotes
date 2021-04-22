@@ -24,3 +24,5 @@
 - NPM script Runner  (not use)
 - Vue.js  (not use)
 - Redis
+- Merge Request Integration
+- Openapi Editor
