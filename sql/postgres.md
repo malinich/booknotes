@@ -3,7 +3,7 @@
 do $$
 begin
 for _ in 1..1000 loop
-   INSERT INTO users_user(
+INSERT INTO users_user(
 password, is_superuser, username, first_name, last_name, email
 )
 with gen_name as (
