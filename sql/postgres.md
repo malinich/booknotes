@@ -1,3 +1,18 @@
+#### random insert into table 
+```sql
+INSERT INTO user_association_genericuserassociation(
+    object_id, content_type_id, user_id, association_type_id
+)
+select ua.object_id, ua.content_type_id, rr.id, ua.association_type_id from user_association_genericuserassociation ua, (SELECT *
+FROM  (
+   SELECT DISTINCT 1 + trunc(random() * (select count(1) from users_user))::integer AS id
+   FROM   generate_series(1, 1000) g
+   ) r
+join  users_user USING (id)
+LIMIT  1000) as rr
+where ua.id=14455;
+```
+
 #### generate and insert modified table row
 ```sql
 do $$
