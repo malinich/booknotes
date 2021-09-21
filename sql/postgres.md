@@ -1,3 +1,22 @@
+#### delete duplicates
+```sql
+delete from protector_ownertopermission where id in (
+    select unnest(po.agg_id[2:]) as id
+    from (
+             select count(1),
+                    array_agg(permission_id),
+                    array_agg(id) agg_id
+             from protector_ownertopermission
+             where object_id is null
+               and content_type_id is null
+             group by content_type_id, object_id, owner_content_type_id,
+                      owner_object_id, permission_id
+             having count(1) > 1
+             order by agg_id
+         ) as po
+);
+
+```
 #### random insert into table 
 ```sql
 INSERT INTO user_association_genericuserassociation(
