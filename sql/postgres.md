@@ -1,3 +1,27 @@
+#### generate and insert modified table row
+```sql
+do $$
+begin
+for _ in 1..1000 loop
+   INSERT INTO users_user(
+password, is_superuser, username, first_name, last_name, email
+)
+with gen_name as (
+    select substring(md5(random()::text) from 0 for 8) as gname
+)
+SELECT password,
+       is_superuser,
+       username || gen_name.gname,
+       first_name,
+       last_name,
+       gen_name.gname || email
+FROM users_user, gen_name
+WHERE id = 277;
+
+end loop;
+end
+$$
+```
 #### timeseries
 ```sql
 -- hang transactions
