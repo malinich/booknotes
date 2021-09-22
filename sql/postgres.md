@@ -1,3 +1,19 @@
+#### merge two json 
+```sql
+SELECT json_agg(codename)::jsonb || (SELECT  ((t.roles_and_permissions_as_dict::json ->>0 )::json ->>'permissions')::json
+FROM public.keycloak_userprofilekeycloak t
+WHERE user_id = 8)::jsonb
+FROM "auth_permission"
+         INNER JOIN "user_association_userassociationtype_permissions"
+                    ON ("auth_permission"."id" =
+                        "user_association_userassociationtype_permissions"."permission_id")
+         INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" =
+                                              "django_content_type"."id")
+WHERE "user_association_userassociationtype_permissions"."userassociationtype_id" = (
+    select id from user_association_userassociationtype where user_association_userassociationtype.content_type_id = 1 and role_number = 0);
+
+
+```
 #### insert if not exist
 ```sql
 INSERT INTO "user_association_genericuserassociation" 
