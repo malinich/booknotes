@@ -1,3 +1,16 @@
+#### insert if not exist
+```sql
+INSERT INTO "user_association_genericuserassociation" 
+        ("content_type_id", "object_id", "user_id", "association_type_id") 
+SELECT :ct, :blog_id, :user_id, :role_id 
+WHERE
+    NOT EXISTS (
+        SELECT 1
+        FROM "user_association_genericuserassociation" 
+        WHERE content_type_id = :ct AND object_id = :blog_id AND user_id = :user_id 
+    )
+RETURNING "user_association_genericuserassociation"."id"
+```
 #### delete duplicates
 ```sql
 delete from protector_ownertopermission where id in (
