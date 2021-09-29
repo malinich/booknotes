@@ -27,6 +27,18 @@ WHERE
     )
 RETURNING "user_association_genericuserassociation"."id"
 ```
+
+```sql
+insert into core_attendee (user_id, mailto, status, is_organizer, event_id, exchange_changekey, external_id)
+SELECT  id, '', 'accepted', FALSE, '7be2d894-5a03-4257-88fd-cd88fc91c172', NULL, NULL from user_user
+WHERE
+    NOT EXISTS (
+        SELECT 1
+        FROM "core_attendee"
+        WHERE user_id = user_user.id
+    )
+order by random() LIMIT 50
+```
 #### delete duplicates
 ```sql
 delete from protector_ownertopermission where id in (
