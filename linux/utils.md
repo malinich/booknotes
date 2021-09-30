@@ -1,3 +1,7 @@
+#### разделить параметры по аргументам из файла
+```bash
+grep -v ^# .env | xargs -0  | awk 'NF' | sed 's/=/ /g' | cat | xargs -n 3 sh -c 'dotenv set $1 $2'
+```
 #### jpg to pdf
 ```
 # change size image
