@@ -33,6 +33,21 @@ postgres=# create index on t(b text_pattern_ops);
 CREATE INDEX
 postgres=# explain (costs off) select * from t where b like 'A%';
 ```
+##### Какие операторы входят в класс (и, следовательно, индекс может использоваться для доступа по условию, включающему такой оператор)?
+```sql
+postgres=# select amop.amopopr::regoperator
+from pg_opclass opc, pg_opfamily opf, pg_am am, pg_amop amop
+where opc.opcname = 'array_ops'
+and opf.oid = opc.opcfamily
+and am.oid = opf.opfmethod
+and amop.amopfamily = opc.opcfamily
+and am.amname = 'btree'
+and amop.amoplefttype = opc.opcintype;
+        amopopr        
+-----------------------
+ <(anyarray,anyarray)
+ <=(anyarray,anyarray)
+ ```
 #### свойства индекса
 ```sql
 К свойствам метода доступа относятся следующие четыре (на примере btree):
