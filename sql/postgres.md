@@ -1,3 +1,17 @@
+#### c какими полями работает индекс
+```sql
+select opfname, opcname, opcintype::regtype
+from pg_opclass opc, pg_opfamily opf
+where opf.opfname = 'integer_ops'
+and opc.opcfamily = opf.oid
+and opf.opfmethod = (select oid from pg_am where amname = 'btree');
+   opfname   | opcname  | opcintype
+-------------+----------+-----------
+ integer_ops | int2_ops | smallint
+ integer_ops | int4_ops | integer
+ integer_ops | int8_ops | bigint
+(3 rows)
+```
 #### свойства индекса
 ```sql
 К свойствам метода доступа относятся следующие четыре (на примере btree):
