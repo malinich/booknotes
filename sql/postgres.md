@@ -12,6 +12,19 @@ and opf.opfmethod = (select oid from pg_am where amname = 'btree');
  integer_ops | int8_ops | bigint
 (3 rows)
 ```
+##### с какими типами данных может работать такой-то метод доступа?
+```sql
+postgres=# select opcname, opcintype::regtype
+from pg_opclass
+where opcmethod = (select oid from pg_am where amname = 'btree')
+order by opcintype::regtype::text;
+       opcname       |          opcintype          
+---------------------+-----------------------------
+ abstime_ops         | abstime
+ array_ops           | anyarray
+ enum_ops            | anyenum
+```
+
 ##### указание с каким полем работать должен индекс
 ```sql
 -- Это ограничение можно преодолеть, создав индекс с классом операторов text_pattern_ops (обратите внимание, как изменилось условие в плане):
