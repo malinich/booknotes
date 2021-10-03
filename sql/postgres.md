@@ -1,3 +1,41 @@
+#### свойства индекса
+```sql
+К свойствам метода доступа относятся следующие четыре (на примере btree):
+
+postgres=# select a.amname, p.name, pg_indexam_has_property(a.oid,p.name)
+from pg_am a,
+unnest(array['can_order','can_unique','can_multi_col','can_exclude']) p(name)
+where a.amname = 'btree' order by a.amname;
+ amname |     name      | pg_indexam_has_property
+--------+---------------+-------------------------
+ btree  | can_order     | t
+ btree  | can_unique    | t
+ btree  | can_multi_col | t
+ btree  | can_exclude   | t
+(4 rows)
+```
+
+#### свойства текущего ндекса
+```sql
+свойства столбцов:
+
+postgres=# select p.name, pg_index_column_has_property('t_a_idx'::regclass,1,p.name)
+from unnest(array['asc','desc','nulls_first','nulls_last','orderable','distance_orderable','returnable','search_array','search_nulls']) p(name);
+        name        | pg_index_column_has_property
+--------------------+------------------------------
+ asc                | t
+ desc               | f
+ nulls_first        | f
+ nulls_last         | t
+ orderable          | t
+ distance_orderable | f
+ returnable         | t
+ search_array       | t
+ search_nulls       | t
+(9 rows)
+```
+-------------------
+
 #### merge two json 
 ```sql
 SELECT json_agg(codename)::jsonb || (SELECT  ((t.roles_and_permissions_as_dict::json ->>0 )::json ->>'permissions')::json
