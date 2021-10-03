@@ -12,6 +12,14 @@ and opf.opfmethod = (select oid from pg_am where amname = 'btree');
  integer_ops | int8_ops | bigint
 (3 rows)
 ```
+##### указание с каким полем работать должен индекс
+```sql
+-- Это ограничение можно преодолеть, создав индекс с классом операторов text_pattern_ops (обратите внимание, как изменилось условие в плане):
+
+postgres=# create index on t(b text_pattern_ops);
+CREATE INDEX
+postgres=# explain (costs off) select * from t where b like 'A%';
+```
 #### свойства индекса
 ```sql
 К свойствам метода доступа относятся следующие четыре (на примере btree):
