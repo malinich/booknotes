@@ -1,3 +1,12 @@
+#### использование toast (проверить если ли такие строчки) 
+```sql
+select t1.oid, t1.relname, t1.relkind, t2.relkind, t2.relpages, t2.reltuples
+from pg_class t1
+inner join pg_class t2
+on t1.reltoastrelid = t2.oid
+where t1.relkind = 'r'
+  and t2.relkind = 't';
+```
 #### c какими полями работает индекс
 ```sql
 select opfname, opcname, opcintype::regtype
