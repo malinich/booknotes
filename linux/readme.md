@@ -1,3 +1,51 @@
+#### vpn -wireguard
+```bash
+# https://www.the-digital-life.com/wireguard-docker/
+sudo mkdir /opt/wireguard-server
+sudo chown christian:christian /opt/wireguard-server
+vim /opt/wireguard-server/docker-compose.yaml
+
+version: "2.1"
+services:
+  wireguard:
+    image: linuxserver/wireguard
+    container_name: wireguard
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - SERVERURL=my-server-name  #optional
+      - SERVERPORT=51820 #optional
+      - PEERS=3 #optional
+      - PEERDNS=auto #optional
+      - INTERNAL_SUBNET=10.13.13.0 #optional
+    volumes:
+      - /opt/wireguard-server/config:/config
+      - /lib/modules:/lib/modules
+    ports:
+      - 51820:51820/udp
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    restart: unless-stopped
+
+cd /opt/wireguard-server
+docker-compose up -d
+docker exec -it wireguard /app/show-peer <peer-number>
+# если надо увеличитьб кол-во, то меняем peers
+docker-compose up -d --force-recreate
+```
+
+
+#### vpn openvpn
+```bash
+CID=$(docker run -d --restart=always --privileged -p 1194:1194/udp -p 443:443/tcp umputun/dockvpn)
+docker run -t -i -p 8080:8080 --volumes-from $CID umputun/dockvpn serveconfig
+# либо docker run -t -i -p 8181:8080 --volumes-from $CID umputun/dockvpn serveconfig
+
+```
 #### разделить параметры по аргументам из файла
 ```bash
 grep -v ^# .env | xargs -0  | awk 'NF' | sed 's/=/ /g' | cat | xargs -n 3 sh -c 'dotenv set $1 $2'
