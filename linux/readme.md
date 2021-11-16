@@ -1,3 +1,8 @@
+#### bluetooth
+```bash
+sudo dmesg  | egrep -i 'blue|firm'
+ls /lib/firmware/rtl_bt
+```
 #### unfo about devices 
 ```bash
 lsmod
