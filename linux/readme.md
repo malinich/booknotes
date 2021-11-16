@@ -5,7 +5,7 @@ nm-tool
 lshw -c network
 lspci
 tail -f /var/log/dmesg
- 
+hciconfig --all
 ```
 #### vpn -wireguard
 ```bash
