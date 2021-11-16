@@ -6,6 +6,7 @@ lshw -c network
 lspci
 tail -f /var/log/dmesg
 hciconfig --all
+lshw
 ```
 #### vpn -wireguard
 ```bash
