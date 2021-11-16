@@ -1,3 +1,12 @@
+#### unfo about devices 
+```bash
+lsmod
+nm-tool
+lshw -c network
+lspci
+tail -f /var/log/dmesg
+ 
+```
 #### vpn -wireguard
 ```bash
 # https://www.the-digital-life.com/wireguard-docker/
