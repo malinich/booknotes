@@ -1,3 +1,45 @@
+#### функции и исключения
+```sql
+DO
+$$
+DECLARE
+updrow RECORD;
+BEGIN
+for updrow in
+    select cce.id, cal_user.id calid, cce.event_id
+    from core_event ce
+	     left join core_calendarevent cce on ce.id = cce.event_id
+	     left join core_calendar c on c.id = ce.calendar_id
+	     left join core_attendee ca on ca.event_id = ce.id
+	     left join core_calendar cal_user
+		       on cal_user.external_id = ca.user_id::text
+    where cce.is_organizer = true
+      and ca.is_organizer = true
+      and ce.calendar_id = cce.calendar_id
+      and cal_user.id notnull
+    order by ca.id
+    loop
+	BEGIN
+	    update core_calendarevent
+	    set calendar_id = updrow.calid
+	    where core_calendarevent.id = updrow.id;
+	EXCEPTION
+	    WHEN unique_violation THEN
+		RAISE NOTICE 'unique_violation %', updrow.id;
+		DELETE
+		from core_calendarevent ce
+		where event_id = updrow.event_id
+		  and ce.calendar_id = updrow.calid
+		  and is_organizer = false;
+
+		update core_calendarevent
+		set calendar_id = updrow.calid
+		where core_calendarevent.id = updrow.id;
+	END;
+    end loop;
+END;
+$$ LANGUAGE 'plpgsql';
+```
 #### использование toast (проверить если ли такие строчки) 
 ```sql
 select t1.oid, t1.relname, t1.relkind, t2.relkind, t2.relpages, t2.reltuples
