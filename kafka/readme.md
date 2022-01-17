@@ -1,3 +1,13 @@
+```sh
+kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic test-topic
+kafka-topics.sh --bootstrap-server localhost:9092 --list
+kafka-console-producer.sh --bootstrap-server localhost:9092 --topic test-topic
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test-topic --from-beginning
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --group consumer-group-test-topic --topic test-topic
+
+
+```
+
 UI
 ```
 docker run -e ADV_HOST=127.0.0.1 -e EULA="https://dl.lenses.stream/d/?id=bd6b9615-xxxx-4b54-b08a-595045e201a8" --rm -p 3030:3030 -p 9092:9092 -p 2181:2181 -p 8081:8081 landoop/kafka-lenses-dev
