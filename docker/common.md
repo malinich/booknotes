@@ -1,4 +1,5 @@
-##### change storage folder for docker
+##### change storage folder for docker 
+sudo nvim /lib/systemd/system/docker.service
 ```
 Let's get started by modifying systemd's docker start up script. Open file /lib/systemd/system/docker.service with your favorite text editor and replace the following line where /new/path/docker is a location of your new chosen docker directory:
 
