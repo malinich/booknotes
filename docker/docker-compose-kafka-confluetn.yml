@@ -1,0 +1,51 @@
+version: '3.7'
+
+services:
+  zookeeper:
+    image: 'confluentinc/cp-zookeeper:5.0.0'
+    environment:
+      ALLOW_ANONYMOUS_LOGIN: 1
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - 2181:2181
+      - 9998:8080
+
+  kafka:
+    image: 'confluentinc/cp-kafka:5.0.0'
+    depends_on:
+      - zookeeper
+    environment:
+      ALLOW_PLAINTEXT_LISTENER: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    ports:
+      - 9092-9093:9092-9093
+
+  minio:
+    image: minio/minio
+    restart: always
+    environment:
+      MINIO_ACCESS_KEY: development_minio_key
+      MINIO_SECRET_KEY: development_minio_secret
+    command: server /export
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+
+  postgres:
+    shm_size: 1G
+    environment:
+      POSTGRES_DB: intranet
+      POSTGRES_USER: intranet
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/blogs
+    restart: always
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile-postgres
+    ports:
+      - 55435:5432
