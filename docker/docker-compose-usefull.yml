@@ -62,7 +62,7 @@ services:
     ports:
       - "9200:9200"
     environment:
-      ES_JAVA_OPTS: "-Xmx5g -Xms5g"
+      ES_JAVA_OPTS: "-Xmx2g -Xms2g"
 
   # kibana:
   #   build:
