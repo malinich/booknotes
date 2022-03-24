@@ -1,0 +1,2 @@
+# brew install librdkafka
+# LDFLAGS="-L$(brew --prefix librdkafka)/lib" CFLAGS="-I$(brew --prefix librdkafka)/include" pip install confluent-kafka
