@@ -1,4 +1,4 @@
-#### <blockquote>install
+#### install
 ```bash
 sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
 libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
@@ -28,8 +28,7 @@ pyenv virtualenvwrapper
 mkvirtualenv name
 
 ```
-
-  
-  #### poetry update last 
+  poetry
+#### poetry update last 
   ```poetry show --outdated | awk '{print $1 , $3}' | xargs -L1 sh -c 'poetry add $0@$1'```
   
