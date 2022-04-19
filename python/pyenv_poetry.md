@@ -28,3 +28,8 @@ pyenv virtualenvwrapper
 mkvirtualenv name
 
 ```
+
+  
+  #### poetry update last 
+  ```poetry show --outdated | awk '{print $1 , $3}' | xargs -L1 sh -c 'poetry add $0@$1'```
+  
