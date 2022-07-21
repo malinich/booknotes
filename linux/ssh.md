@@ -84,7 +84,11 @@ cat ~/id_rsa.pub >> ~/.ssh/authorized_keys
 RSAAuthentication yes
 # Should we allow Pubkey (SSH version 2) authentication?
 PubkeyAuthentication yes
-           
+# для определенного пользователя войтий
+AllowUsers user1 user2
+# для группы 
+AllowGroups root
+
 # Where do we look for authorized public keys?
 # relative to the user's home directory
 AuthorizedKeysFile    .ssh/authorized_keys
@@ -98,6 +102,8 @@ IdentityFile ~/.ssh/realname_rsa
 # Host myother realname2.example.org
 # Hostname realname2.example.org
 IdentityFile ~/.ssh/realname2_rsa
+
+sudo systemctl restart sshd
 
 ... error:
 # Agent admitted failure to sign using the key.Permission denied (publickey)
