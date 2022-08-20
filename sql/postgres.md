@@ -1,3 +1,9 @@
+#### случайные строки
+
+```sql
+
+select  array_to_string(array_agg(chr((32 + random() * 92)::integer)), '') from generate_series(1, 10)
+```
 #### функции и исключения
 ```sql
 DO
