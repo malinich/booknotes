@@ -218,6 +218,34 @@ LIMIT  1000) as rr
 where ua.id=14455;
 ```
 
+```sql
+CREATE OR REPLACE FUNCTION random_between(low BIGINT ,high BIGINT)
+   RETURNS BIGINT AS $$
+BEGIN
+   RETURN floor(random()* (high-low + 1) + low);
+END
+$$ language plpgsql;
+
+do $$
+begin
+for _ in 1..90 loop
+INSERT INTO sap_company(
+    created_at, updated_at, inn, guid, kfocus, sap_id, is_foreign
+)
+
+select k.created_at,
+                     k.updated_at,
+                      random_between(10000000000, 1000000000000)::bigint ,
+                     k.guid,
+                     k.kfocus,
+                     (random() * 100000)::int,
+                     false
+              from sap_company as k where k.id = 1;
+
+end loop;
+end
+$$;
+```
 #### generate and insert modified table row
 ```sql
 do $$
