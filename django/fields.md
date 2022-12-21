@@ -1,3 +1,28 @@
+#### custom field that allow use get_{field_name} and allow to update field_name
+```python
+class GetSetSerializerField(Field):
+    def __init__(self, child, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.child = child
+
+    def to_internal_value(self, data):
+        if isinstance(data, typing.List):
+            return [self.child.to_internal_value(item) for item in data]
+        return self.child.to_internal_value(data)
+
+    def to_representation(self, value):
+        func_attr = getattr(
+            self.parent.instance,
+            'get_'+self.field_name,
+            lambda: value
+        )
+        data = func_attr()
+        if isinstance(data, typing.List):
+            return [self.child.to_representation(item) for item in data]
+        return self.child.to_representation(data)
+
+```
+
 #### update jsonb field in django 
 ```python
 instance.__class__.objects.filter(id=instance.id).update(extra_info=Func(
