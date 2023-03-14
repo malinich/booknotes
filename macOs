@@ -4,3 +4,5 @@
 
 LDFLAGS="-L$(brew --prefix openssl@1.1)/lib" CFLAGS="-I$(brew --prefix openssl@1.1)/include" pip install -r requirements/dev.txt
 brew install libmagic
+
+LDFLAGS=-L/opt/homebrew/Cellar/gettext/0.21/lib pip install --no-cache-dir "uWSGI"
