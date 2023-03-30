@@ -22,7 +22,36 @@ class GetSetSerializerField(Field):
         return self.child.to_representation(data)
 
 ```
+#### use jsonb for filter
+```python
+# извлечь данные, привести к типу время
+When(
+    service__key=service.key,
+    custom_fields_values__ui_control__key=ui_control_key,
+    then=Cast(
+        Func(
+            F("custom_fields_values__value"),
+            Value("items"),
+            Value("0"),
+            Value("date_from"),
+            function="jsonb_extract_path_text"
+        ),
+        DateTimeField()
+    )
+)
 
+# вытащить данные и привести к типу
+ When(
+        service__key=service.key,
+        custom_fields_values__ui_control__key=ui_control_key,
+        then=Cast(
+            KeyTextTransform("date_from", "custom_fields_values__value__items__0"),
+            DateTimeField()
+        )
+    )
+)
+
+```
 #### update jsonb field in django 
 ```python
 instance.__class__.objects.filter(id=instance.id).update(extra_info=Func(
