@@ -1,5 +1,8 @@
 #### fingerprint
 ```bash
+ssh-keyscan revasan.club | ssh-keygen -lf -
+```
+```bash
 file=$(mktemp)
 ssh-keyscan host > $file 2> /dev/null
 ssh-keygen -l -f $file
