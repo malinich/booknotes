@@ -17,7 +17,7 @@ lshw
 ```bash
 # https://www.the-digital-life.com/wireguard-docker/
 sudo mkdir /opt/wireguard-server
-sudo chown christian:christian /opt/wireguard-server
+sudo chown maka:maka /opt/wireguard-server
 vim /opt/wireguard-server/docker-compose.yaml
 
 version: "2.1"
