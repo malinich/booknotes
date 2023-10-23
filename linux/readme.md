@@ -1,3 +1,7 @@
+#### convert images
+```bash
+gs -dNOPAUSE -sDEVICE=jpeg -r200 -dJPEGQ=100 -sOutputFile=document-%02d.jpg "The_Artificial_Intelligence_Crush_2018.pdf" -dBATCH
+```
 #### bluetooth
 ```bash
 sudo dmesg  | egrep -i 'blue|firm'
