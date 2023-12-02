@@ -21,6 +21,11 @@ Port 22
 PasswordAuthentication no
 KbdInteractiveAuthentication no
 
+apt update
+apt upgrade
+apt install mc
+apt install docker.io
+
 # iptables see iptables.txt
 iptables -A INPUT -i lo -j ACCEPT
 iptables -A INPUT ! -i lo -d 127.0.0.0/8 -j REJECT
