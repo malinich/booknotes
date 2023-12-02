@@ -1,6 +1,7 @@
 #### this commads use when server start first time
 ```bash
-useradd -m -G wheel user  # add user to wheel group
+useradd -m -G sudo aadm
+useradd -m maka
 
 ssh-keygen  # on local-host
 ssh-keygen -t ecdsa -b 521  # 521 bit
