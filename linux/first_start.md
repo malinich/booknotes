@@ -35,6 +35,13 @@ sudo snap install core; sudo snap refresh core
 sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
 sudo certbot certonly
+# configure certbot
+# configure github-runner
+	- coздать раннер
+https://github.com/malinich/colorInvasion/settings/actions/runners/new
+- создать токен https://github.com/settings/tokens
+gh auth login
+
 
 
 wget  https://github.com/cli/cli/releases/download/v2.39.2/gh_2.39.2_linux_amd64.deb
