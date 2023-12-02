@@ -26,6 +26,19 @@ apt upgrade
 apt install mc
 apt install docker.io
 
+
+mkdir /opt/_work
+chown maka:maka /opt/_work
+
+sudo apt install snapd
+sudo snap install core; sudo snap refresh core
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+sudo certbot certonly
+
+
+wget  https://github.com/cli/cli/releases/download/v2.39.2/gh_2.39.2_linux_amd64.deb
+
 # iptables see iptables.txt
 iptables -A INPUT -i lo -j ACCEPT
 iptables -A INPUT ! -i lo -d 127.0.0.0/8 -j REJECT
