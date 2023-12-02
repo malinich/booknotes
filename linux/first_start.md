@@ -1,18 +1,25 @@
 #### this commads use when server start first time
 ```bash
-useradd -m -G sudo aadm
-useradd -m maka
+useradd -m -G sudo administrator
+useradd -m user-my
 
 ssh-keygen  # on local-host
 ssh-keygen -t ecdsa -b 521  # 521 bit
 ssh-copy-id user@host  	# copy ssh key
-						# it add key to file ~/.ssh/authorized_keys (600)
+# it add key to file ~/.ssh/authorized_keys (600)
 ssh -i ~/.ssh/private_key user@host
+
 vim /etc/sshd_config
-- Port 2022
-- Protocol 2
-- PasswordAuthentication no
-- AllowUsers user
+-config ssh_config
+PasswordAuthentication no
+-sshd_config
+PermitRootLogin no
+AllowUsers user-my
+PubkeyAuthentication yes
+Protocol 2
+Port 22
+PasswordAuthentication no
+KbdInteractiveAuthentication no
 
 # iptables see iptables.txt
 iptables -A INPUT -i lo -j ACCEPT
