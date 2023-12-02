@@ -42,7 +42,10 @@ https://github.com/malinich/colorInvasion/settings/actions/runners/new
 - создать токен https://github.com/settings/tokens
 gh auth login
 
-
+DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+mkdir -p $DOCKER_CONFIG/cli-plugins
+curl -SL https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 
 wget  https://github.com/cli/cli/releases/download/v2.39.2/gh_2.39.2_linux_amd64.deb
 
