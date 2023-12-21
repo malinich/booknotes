@@ -1,3 +1,30 @@
+##### registry
+```bash
+mkdir auth
+cd auth
+rm -rf registry.password
+htpasswd -Bc registry.password admin
+cd ..
+vim docker-compose.yml
+version: '3'
+
+services:
+  registry:
+    image: registry:2
+    ports:
+    - "5001:5000"
+    environment:
+      REGISTRY_AUTH: htpasswd
+      REGISTRY_AUTH_HTPASSWD_REALM: Registry
+      REGISTRY_AUTH_HTPASSWD_PATH: /auth/registry.password
+      REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
+    volumes:
+      - ./auth:/auth
+      - ./data:/data
+docker-compose up -d
+docker login localhost:5005 -u admin -p admin
+
+```
 ##### change storage folder for docker 
 sudo nvim /lib/systemd/system/docker.service
 ```
