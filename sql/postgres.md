@@ -1,3 +1,16 @@
+#### dump + restore
+```bash
+docker-compose exec -it db  pg_dumpall -c  -U postgres > dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql
+tar cfz dump_21.tar.gz  dump_21-12-2023_11_48_48.sql
+docker cp dump_21.tar.gz partner-panel-db-1:/
+
+dropdb postgres -U postgres
+createdb postgres -U postgres
+
+tar xvf dump_21.tar.gz
+psql -U postgres < dump_19-10-2023_09_47_36.sql
+```
+
 #### случайные строки
 
 ```sql
