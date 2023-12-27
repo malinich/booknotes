@@ -1,3 +1,8 @@
+#### memmory check
+```bash
+ps -eo user,pid,ppid,cmd,pmem,rss --no-headers --sort=-rss | awk '{if ($2 ~ /^[0-9]+$/ && $6/1024 >= 1) {printf "PID: %s, PPID: %s, Memory consumed (RSS): %.2f MB, Command: ", $2, $3, $6/1024; for (i=4; i<=NF; i++) printf "%s ", $i; printf "\n"}}'
+```
+
 #### convert images
 ```bash
 gs -dNOPAUSE -sDEVICE=jpeg -r200 -dJPEGQ=100 -sOutputFile=document-%02d.jpg "The_Artificial_Intelligence_Crush_2018.pdf" -dBATCH
