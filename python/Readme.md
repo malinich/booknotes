@@ -1,5 +1,11 @@
 #### profilers
 ```python
+ hp.heap().get_rp()
+(Pdb) heap = hp.heap()
+(Pdb) heap[0]
+
+```
+```python
 import resource
 import gc
 
