@@ -1,4 +1,31 @@
 #### profilers
+jmalloc
+```bash
+
+FROM python:3.11-slim
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+RUN groupadd -r app && useradd -r -g app app
+
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends \
+build-essential gcc libpq-dev libc-dev libmagic1 libpq5
+RUN apt-get install libjemalloc2 && rm -rf /var/lib/apt/lists/*
+
+ENV LD_PRELOAD /usr/lib/x86_64-linux-gnu/libjemalloc.so.2
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --upgrade Cython && pip install -r requirements.txt
+
+COPY . .
+RUN chown -R app:app /app
+USER app
+
+CMD ["/bin/bash", "./entrypoint.sh"]
+
+```
 ```python
  hp.heap().get_rp()
 (Pdb) heap = hp.heap()
