@@ -1,3 +1,63 @@
+#### anonymize
+```sql
+
+------------------------------------------------------------------------------------------------------------------------
+    -- ANONYMIZE DATA
+------------------------------------------------------------------------------------------------------------------------
+-- Создать клон базы
+CREATE DATABASE clone WITH TEMPLATE postgres OWNER postgres;
+-- очистить таблицу
+truncate table aggregators_aggregatortoken;
+-- заполнить таблицу
+DO LANGUAGE plpgsql $$
+    BEGIN
+for _ in 1..10 loop
+    BEGIN
+        raise notice 'inserting %', _;
+        insert into aggregators_aggregatortoken (key, created, user_id)
+        VALUES (md5(random()::text), now(), (select id from users_user where type = 2 order by random() limit 1));
+    EXCEPTION
+        WHEN unique_violation THEN
+            -- do nothing
+    END;
+commit ;
+end loop;
+    END;
+$$;
+
+-- перемешать данные в таблице
+ DO LANGUAGE plpgsql $$
+    DECLARE row record;
+     BEGIN
+        FOR row IN SELECT * FROM booking_booking  LOOP
+            raise notice 'changing %', row.id;
+        BEGIN
+            row.phone :=  left(row.phone, 2) || left(shuffle('1234567890'), 10);
+            row.first_name := left(shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'), 10);
+            row.last_name := left(shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'), 10);
+            row.email := left(shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'), 10) || '@' || left(shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'), 4) || '.ru';
+            row.middle_name := left(shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'), 10);
+            row.birth_date := make_date(
+                    extract(year from row.birth_date)::int,
+                    extract(month from row.birth_date)::int,
+                    GREATEST(
+                            LEAST(div((random() * 1000)::int, 30), 29)::INT,
+                    1)
+            );
+            UPDATE booking_booking SET
+                phone = row.phone,
+                first_name = row.first_name,
+                last_name = row.last_name,
+                email = row.email,
+                middle_name = row.middle_name,
+                birth_date = row.birth_date
+            WHERE id = row.id;
+            COMMIT ;
+        END;
+        END LOOP;
+        END
+$$;
+```
 #### dump + restore
 ```bash
 docker-compose exec -it db  pg_dumpall -c  -U postgres > dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql
