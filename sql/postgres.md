@@ -4,6 +4,17 @@
 ------------------------------------------------------------------------------------------------------------------------
     -- ANONYMIZE DATA
 ------------------------------------------------------------------------------------------------------------------------
+-- create func
+create or replace function shuffle(text)
+returns text language sql as $$
+    select string_agg(ch, '')
+    from (
+        select substr($1, i, 1) ch
+        from generate_series(1, length($1)) i
+        order by random()
+        ) s
+$$;
+
 -- Создать клон базы
 CREATE DATABASE clone WITH TEMPLATE postgres OWNER postgres;
 -- очистить таблицу
