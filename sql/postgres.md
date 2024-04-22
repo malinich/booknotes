@@ -1,3 +1,7 @@
+#### dump
+ ```sql
+ pg_dump -Fc  -O -x  postgres  -U postgres > dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql
+ ```
 #### anonymize
 ```sql
 
